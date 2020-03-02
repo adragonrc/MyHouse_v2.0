@@ -21,7 +21,6 @@ public class AlquilerUsuarioActivity extends BaseActivity<Presenter> implements 
 
     private RecyclercViewAdapter recyclercViewAdapter;
     private RecyclerView.LayoutManager manager;
-
     private View.OnClickListener listener;
 
     @Override
