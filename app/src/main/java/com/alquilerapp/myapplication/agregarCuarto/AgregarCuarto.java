@@ -50,7 +50,8 @@ public class AgregarCuarto extends BaseActivity<Interfaz.Presenter> implements I
         //ivPhoto.buildDrawingCache();
         currentPhotoPath = s.SaveImage(this, bmGuardar);
         presenter.insertarCuarto(sNumCuarto,sPrecio,sDetalles, currentPhotoPath);
-
+        Toast toast1 = Toast.makeText(getApplicationContext(), "Toast por defecto", Toast.LENGTH_SHORT);
+        toast1.show();
     }
 
     @Override
