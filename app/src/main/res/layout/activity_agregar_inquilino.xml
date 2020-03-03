@@ -24,16 +24,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/sTitleAI"
-                android:textSize="30sp"
-                android:visibility="visible"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivPhoto"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:src="@drawable/image_foto"
+                />
+            
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -218,11 +215,6 @@
                     android:text="@string/srbFaltaC" />
             </RadioGroup>
 
-            <ImageView
-                android:id="@+id/ivPhoto"
-                android:layout_width="370dp"
-                android:layout_height="100dp"
-                />
         </LinearLayout>
     </ScrollView>
 
