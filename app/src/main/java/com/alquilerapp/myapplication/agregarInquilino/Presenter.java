@@ -28,6 +28,10 @@ public class Presenter extends BasePresenter<Interfaz.View> implements Interfaz.
 
     @Override
     public void agregarUsuario(String DNI, String nombres, String apellidoPat, String apellidoMat, String uri, String numCuarto, String mensualidad, String fecha, boolean pago) {
+        if(uri == null || uri.equals("")){
+            view.showMensaje("agrega una foto");
+            return;
+        }
         if (validarImputs(DNI, nombres, apellidoPat, numCuarto, mensualidad, fecha)){
             String fecha_c = null;
             if (pago) {
