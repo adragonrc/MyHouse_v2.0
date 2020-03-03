@@ -28,9 +28,8 @@
                 android:id="@+id/ivPhoto"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
-                android:src="@drawable/image_foto"
-                />
-            
+                android:src="@drawable/image_foto" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
