@@ -4,14 +4,24 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewCompat;
+import android.transition.Fade;
+import android.transition.Transition;
+import android.transition.TransitionValues;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alquilerapp.myapplication.ActivityShowImage;
 import com.alquilerapp.myapplication.AdministradorCamara;
 import com.alquilerapp.myapplication.AlquilerUsuario.AlquilerUsuarioActivity;
 import com.alquilerapp.myapplication.Base.BaseActivity;
@@ -19,6 +29,8 @@ import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
 import com.alquilerapp.myapplication.historialUserPakage.Interfaz;
 import com.alquilerapp.myapplication.historialUserPakage.Presenter;
+
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class HistorialUsuarioActivity extends BaseActivity<Presenter> implements Interfaz.view {
     private TextView tvDNI;
@@ -40,8 +52,26 @@ public class HistorialUsuarioActivity extends BaseActivity<Presenter> implements
 
     private ImageView imPhoto;
 
+    private String uriPhoto;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Fade fade = new Fade();
+        View decor = getWindow().getDecorView();
+        fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
+        fade.excludeTarget(android.R.id.statusBarBackground, true);
+        fade.excludeTarget(android.R.id.navigationBarBackground, true);
+
+        getWindow().setEnterTransition(fade);
+        getWindow().setExitTransition(fade);
+
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
     @Override
     protected void iniciarComandos() {
+
     }
 
     @Override
@@ -72,7 +102,8 @@ public class HistorialUsuarioActivity extends BaseActivity<Presenter> implements
         tvNombres.setText(datos.getAsString(TUsuario.NOMBRES));
         tvApellidoPat.setText(datos.getAsString(TUsuario.APELLIDO_PAT));
         tvApellidoMat.setText(datos.getAsString(TUsuario.APELLIDO_MAT));
-        presenter.setImage(imPhoto, datos.getAsString(TUsuario.URI));
+        uriPhoto = datos.getAsString(TUsuario.URI);
+        presenter.setImage(imPhoto, uriPhoto);
       //  AdministradorCamara.setPic(imPhoto, datos.getAsString(TUsuario.URI));
         tvNumAlquiler.setText(i);
     }
@@ -154,6 +185,14 @@ public class HistorialUsuarioActivity extends BaseActivity<Presenter> implements
         presenter.actualizarApeMat(etApellidoMat.getText().toString());
     }
 
+    public void onClickPhoto(View view){
+        Intent intent = new Intent(this, ActivityShowImage.class);
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imPhoto, ViewCompat.getTransitionName(imPhoto));
+
+        intent.putExtra("bitMap", uriPhoto);
+        startActivity(intent, options.toBundle());
+    }
+
     @Override
     public void ocVerMas(View view){
         Intent i = new Intent(this, AlquilerUsuarioActivity.class);
@@ -200,6 +239,6 @@ public class HistorialUsuarioActivity extends BaseActivity<Presenter> implements
         llConfirNombres = findViewById(R.id.llConfirmNombres);
         llConfirApePat = findViewById(R.id.llConfirmApePat);
         llConfirApeMat = findViewById(R.id.llConfirmApeMat);
-    }
 
+    }
 }

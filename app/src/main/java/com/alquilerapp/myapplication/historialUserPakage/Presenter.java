@@ -1,11 +1,16 @@
 package com.alquilerapp.myapplication.historialUserPakage;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewCompat;
 import android.widget.ImageView;
 
+import com.alquilerapp.myapplication.ActivityShowImage;
 import com.alquilerapp.myapplication.AlquilerUsuario.Item;
 import com.alquilerapp.myapplication.Base.BasePresenter;
 import com.alquilerapp.myapplication.TableCursor;
@@ -17,6 +22,7 @@ import java.util.ArrayList;
 public class Presenter extends BasePresenter<Interfaz.view> implements Interfaz.presenter {
 
     private String dni;
+    private ContentValues datosUsuario;
     public Presenter(Interfaz.view view, String dni) {
         super(view);
         this.dni = dni;
@@ -31,15 +37,41 @@ public class Presenter extends BasePresenter<Interfaz.view> implements Interfaz.
             view.salir();
         }
     }
+    private void setPic(ImageView imageView, String currentPhotoPath) {
+        // Get the dimensions of the View
+        int targetW = imageView.getWidth();
+        int targetH = imageView.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+        imageView.setImageBitmap(bitmap);
+    }
+
     public void setImage(ImageView i, String path){
         if(path == null) return;
         if(path.equals("")) return;
+       // setPic(i, path);
         Bitmap bm = BitmapFactory.decodeFile(path);
         i.setImageBitmap(bm);
     }
+
     private void solicitarDatos() {
         try {
-            ContentValues datosUsuario = db.getFilaInUsuariosOf("*", dni);
+            datosUsuario = db.getFilaInUsuariosOf("*", dni);
             String cont = db.contAlquileresOf(TAlquiler.DNI, dni);
             view.mostrarDatosUsuario(datosUsuario, cont);
             if (db.usuarioAlertado(dni)){
@@ -67,4 +99,5 @@ public class Presenter extends BasePresenter<Interfaz.view> implements Interfaz.
         db.upDateUsuario(TUsuario.APELLIDO_MAT, apellidoMat, dni);
         view.actualizarApeMat(apellidoMat);
     }
+
 }
