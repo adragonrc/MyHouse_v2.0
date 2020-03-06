@@ -20,7 +20,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:scaleType="fitCenter"
-            android:transitionName="transition_photo"
+            android:transitionName="@string/transition_name"
             android:foregroundGravity="center"
             android:layout_gravity="center"/>
     </RelativeLayout>

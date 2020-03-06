@@ -26,7 +26,7 @@ import com.alquilerapp.myapplication.mydialog.PresenterDialogImput;
 
 import java.util.ArrayList;
 
-public class MiCasaActivity extends BaseActivity<Presenter> implements Interface.View, RvAdapterCuartos.Interface{
+public class MiCasaActivity extends BaseActivity<Interface.Presenter> implements Interface.View, RvAdapterCuartos.Interface{
     private RecyclerView rv;
     private DialogOptions dop;
     private DialogInterfaz.DialogOptionPresenter dialogOptionPresenter;
@@ -108,7 +108,7 @@ public class MiCasaActivity extends BaseActivity<Presenter> implements Interface
 
     @NonNull
     @Override
-    protected Presenter createPresenter() {
+    protected Interface.Presenter createPresenter() {
         return new Presenter(this);
     }
 

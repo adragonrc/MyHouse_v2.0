@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Presentador extends BasePresenter<Interface.Vista> {
+public class Presentador extends BasePresenter<Interface.Vista>{
     private String numeroCuarto;
     public Presentador(Interface.Vista view, String numeroCuarto) {
         super(view);

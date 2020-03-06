@@ -22,7 +22,7 @@ import com.alquilerapp.myapplication.mi_casa.Models.ModelUserView;
 
 import java.util.ArrayList;
 
-public class HistorialCasaActivity extends BaseActivity<Presenter> implements Interface.View, RvAdapterUser.Interface, RvAdapterAlquiler.Interface {
+public class HistorialCasaActivity extends BaseActivity<Interface.Presenter> implements Interface.View, RvAdapterUser.Interface, RvAdapterAlquiler.Interface{
     private RecyclerView recyclerView;
     private RvAdapterUser adapterUser;
     private RvAdapterAlquiler adapterAlquiler;
@@ -37,7 +37,7 @@ public class HistorialCasaActivity extends BaseActivity<Presenter> implements In
     }
     @NonNull
     @Override
-    protected Presenter createPresenter() {
+    protected Interface.Presenter createPresenter() {
         return new Presenter(this);
     }
 

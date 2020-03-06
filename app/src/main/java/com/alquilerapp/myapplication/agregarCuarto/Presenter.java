@@ -5,7 +5,7 @@ import com.alquilerapp.myapplication.AdministradorCamara;
 import com.alquilerapp.myapplication.Base.BasePresenter;
 import com.alquilerapp.myapplication.MenuPricipal;
 
-public class Presenter extends BasePresenter<Interfaz.View> implements Interfaz.Presenter<Interfaz.View> {
+public class Presenter extends BasePresenter<Interfaz.View> implements Interfaz.Presenter {
     private AdministradorCamara adc;
     public Presenter(Interfaz.View view) {
         super(view);

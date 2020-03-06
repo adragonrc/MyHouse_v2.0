@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.widget.LinearLayout;
 
 import com.alquilerapp.myapplication.Base.BaseActivity;
+import com.alquilerapp.myapplication.Base.IBasePresenter;
 import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.ViewMensualidad;
@@ -12,7 +13,7 @@ import com.alquilerapp.myapplication.tableActivity.Presenter;
 import com.alquilerapp.myapplication.viewForTable.ViewFilaOfPagos;
 
 
-public class TableActivity extends BaseActivity<Presenter> implements Interfaz.view {
+public class TableActivity extends BaseActivity<IBasePresenter> implements Interfaz.view {
     private LinearLayout llPagos;
 
     @Override
@@ -27,7 +28,7 @@ public class TableActivity extends BaseActivity<Presenter> implements Interfaz.v
 
     @NonNull
     @Override
-    protected Presenter createPresenter() {
+    protected IBasePresenter createPresenter() {
         return new Presenter(this,getIntent().getStringExtra(TAlquiler.ID));
     }
 

@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 
 import com.alquilerapp.myapplication.Adapters.RvAdapterAlquiler;
 import com.alquilerapp.myapplication.Base.BaseActivity;
+import com.alquilerapp.myapplication.Base.BasePresenter;
+import com.alquilerapp.myapplication.Base.IBasePresenter;
 import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.tableActivity.TableActivity;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
@@ -15,7 +17,7 @@ import com.alquilerapp.myapplication.mi_casa.Models.ModelAlquilerView;
 
 import java.util.ArrayList;
 
-public class ListAlquileresActivity extends BaseActivity<Presentador> implements Interface.Vista, RvAdapterAlquiler.Interface{
+public class ListAlquileresActivity extends BaseActivity<IBasePresenter> implements Interface.Vista, RvAdapterAlquiler.Interface{
     private RvAdapterAlquiler adapterAlquiler;
     private RecyclerView recyclerView;
 
@@ -31,7 +33,7 @@ public class ListAlquileresActivity extends BaseActivity<Presentador> implements
 
     @NonNull
     @Override
-    protected Presentador createPresenter() {
+    protected IBasePresenter createPresenter() {
         return new Presentador(this, getIntent().getStringExtra(TCuarto.NUMERO));
     }
 

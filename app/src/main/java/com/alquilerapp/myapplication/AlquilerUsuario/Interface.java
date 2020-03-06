@@ -3,11 +3,12 @@ package com.alquilerapp.myapplication.AlquilerUsuario;
 import android.view.View;
 
 import com.alquilerapp.myapplication.Base.BaseView;
+import com.alquilerapp.myapplication.Base.IBasePresenter;
 
 import java.util.ArrayList;
 
 public interface Interface {
-    interface Presentador{
+    interface Presentador extends IBasePresenter {
 
     }
     interface Vista extends BaseView {

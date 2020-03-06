@@ -3,10 +3,12 @@ package com.alquilerapp.myapplication.VerCuarto;
 import android.content.ContentValues;
 import android.view.View;
 
+import com.alquilerapp.myapplication.Base.BasePresenter;
 import com.alquilerapp.myapplication.Base.BaseView;
+import com.alquilerapp.myapplication.Base.IBasePresenter;
 
 public interface Interface {
-    interface Presenter{
+    interface Presenter extends IBasePresenter {
         ContentValues getDatosAlquiler();
         void mostrarDetalles();
         void deshacerContrato(String motivo);

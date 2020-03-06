@@ -23,7 +23,7 @@ import com.alquilerapp.myapplication.mydialog.PresenterDialogImput;
 import com.alquilerapp.myapplication.verUsuario.Interfaz;
 import com.alquilerapp.myapplication.verUsuario.Presentador;
 
-public class VerUsuario extends BaseActivity<Presentador> implements Interfaz.View{
+public class VerUsuario extends BaseActivity<Interfaz.Presenter> implements Interfaz.View{
     private TextView tvDni;
     private TextView tvNombres;
     private TextView tvApellidoPat;

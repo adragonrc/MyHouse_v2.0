@@ -9,7 +9,7 @@ import com.alquilerapp.myapplication.Base.IBasePresenter;
 import java.util.ArrayList;
 
 public interface Interfaz {
-    interface Presenter <V extends BaseView> extends IBasePresenter<V>{
+    interface Presenter  extends IBasePresenter{
         boolean doPago(RadioGroup radioGroup);
         void agregarUsuario(String DNI, String nombres, String apellidoPat, String apellidoMat, String uri, String numCuarto, String mensualidad, String fecha, boolean pago);
          void confirmar();

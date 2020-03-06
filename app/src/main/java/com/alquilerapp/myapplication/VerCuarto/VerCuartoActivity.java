@@ -31,7 +31,7 @@ import com.alquilerapp.myapplication.mydialog.DialogImput;
 import com.alquilerapp.myapplication.mydialog.DialogInterfaz;
 import com.alquilerapp.myapplication.mydialog.PresenterDialogImput;
 
-public class VerCuartoActivity extends BaseActivity<Presentador> implements Interface.View {
+public class VerCuartoActivity extends BaseActivity<Interface.Presenter> implements Interface.View {
 
     private TextView tvNumeroCuarto;
     private TextView tvNombres;

@@ -5,7 +5,7 @@ import android.preference.PreferenceManager;
 
 import com.alquilerapp.myapplication.DataBaseAdmin;
 
-public abstract class BasePresenter<V extends BaseView> implements IBasePresenter<V>{
+public abstract class BasePresenter<V extends BaseView> implements IBasePresenter{
     private V mMvpView;
     protected V view;
     protected DataBaseAdmin db;
@@ -16,12 +16,10 @@ public abstract class BasePresenter<V extends BaseView> implements IBasePresente
         sp = PreferenceManager.getDefaultSharedPreferences(view.getContext());
     }
 
-
     public void attachView(V mvpView) {
         mMvpView = mvpView;
     }
 
-    @Override
     public void detachView() {
         mMvpView = null;
     }

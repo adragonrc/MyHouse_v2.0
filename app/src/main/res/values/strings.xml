@@ -81,4 +81,5 @@
     <string name="cdImageView">Calificativo</string>
     <string name="sMotSalida">MOTIVOS DE SALIDA</string>
     <string name="s_datos_usuario">DATOS DE USUARIO.</string>
+    <string name="transition_name">transition_photo</string>
 </resources>

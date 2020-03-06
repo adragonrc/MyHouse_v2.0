@@ -10,7 +10,7 @@ import com.alquilerapp.myapplication.R;
 import java.text.ParseException;
 import java.util.Date;
 
-public class Presenter extends BasePresenter<Interfaz.View> implements Interfaz.Presenter<Interfaz.View>{
+public class Presenter extends BasePresenter<Interfaz.View> implements Interfaz.Presenter{
     private MyAdminDate myTime;
     private Boolean confirmacion;
 

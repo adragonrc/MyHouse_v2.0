@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -27,6 +28,12 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
             Toast.makeText(this,e.getErrorOffset(),Toast.LENGTH_LONG).show();
         }
     }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+    }
+
     public Context getContext(){
         return this;
     }

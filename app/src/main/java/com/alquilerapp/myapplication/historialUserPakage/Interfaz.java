@@ -6,11 +6,12 @@ import android.widget.ImageView;
 
 import com.alquilerapp.myapplication.AlquilerUsuario.Item;
 import com.alquilerapp.myapplication.Base.BaseView;
+import com.alquilerapp.myapplication.Base.IBasePresenter;
 
 import java.util.ArrayList;
 
 public interface Interfaz {
-    interface presenter{
+    interface presenter extends IBasePresenter {
         void actualizarNombres(String nombres);
         void actualizarApePat(String apellidoPat);
         void actualizarApeMat(String apellidoMat);

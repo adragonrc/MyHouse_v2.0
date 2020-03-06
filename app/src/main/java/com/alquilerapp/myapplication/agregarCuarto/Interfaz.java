@@ -7,7 +7,7 @@ import com.alquilerapp.myapplication.Base.BaseView;
 import com.alquilerapp.myapplication.Base.IBasePresenter;
 
 public interface Interfaz{
-    interface Presenter<V extends BaseView> extends IBasePresenter<V> {
+    interface Presenter extends IBasePresenter {
         void insertarCuarto(String numCuarto, String precio, String detalles, String URL);
     }
     interface View extends BaseView {

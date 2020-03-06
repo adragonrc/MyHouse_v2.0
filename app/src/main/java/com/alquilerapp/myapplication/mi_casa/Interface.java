@@ -1,12 +1,13 @@
 package com.alquilerapp.myapplication.mi_casa;
 
 import com.alquilerapp.myapplication.Base.BaseView;
+import com.alquilerapp.myapplication.Base.IBasePresenter;
 import com.alquilerapp.myapplication.mi_casa.Models.ModelCuartoView;
 
 import java.util.ArrayList;
 
 public interface Interface{
-    interface Presenter{
+    interface Presenter extends IBasePresenter {
         void terminarAlquiler(String motivo, String id);
         void verTodos();
         void verCuartosAlquilados();

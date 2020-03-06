@@ -15,7 +15,7 @@ import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 
 import java.util.ArrayList;
 
-public class AlquilerUsuarioActivity extends BaseActivity<Presenter> implements Interface.Vista {
+public class AlquilerUsuarioActivity extends BaseActivity<Interface.Presentador> implements Interface.Vista {
     public static final String EXTRA_DNI = "extra_dni";
     private RecyclerView rv;
 
@@ -56,7 +56,7 @@ public class AlquilerUsuarioActivity extends BaseActivity<Presenter> implements 
 
     @NonNull
     @Override
-    protected Presenter createPresenter() {
+    protected Interface.Presentador createPresenter() {
         return new Presenter(this, getIntent().getIntExtra(EXTRA_DNI, -1));
     }
 

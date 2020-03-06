@@ -5,7 +5,7 @@ import com.alquilerapp.myapplication.TableCursor;
 import com.alquilerapp.myapplication.UTILIDADES.Mensualidad;
 import com.alquilerapp.myapplication.UTILIDADES.TPago;
 
-public class Presenter extends BasePresenter<Interfaz.view> implements Interfaz.Presenter {
+public class Presenter extends BasePresenter<Interfaz.view> {
     private String idAlquiler;
     public Presenter(Interfaz.view view, String idAlquiler) {
         super(view);

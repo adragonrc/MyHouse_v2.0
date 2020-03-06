@@ -4,10 +4,11 @@ import android.content.ContentValues;
 import android.view.View;
 
 import com.alquilerapp.myapplication.Base.BaseView;
+import com.alquilerapp.myapplication.Base.IBasePresenter;
 
 public interface Interfaz{
 
-    interface Presenter{
+    interface Presenter extends IBasePresenter {
         void crearPago();
         void positive(String value, String in);
         ContentValues getUser();

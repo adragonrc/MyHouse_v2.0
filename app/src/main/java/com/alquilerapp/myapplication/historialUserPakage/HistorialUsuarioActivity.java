@@ -32,7 +32,7 @@ import com.alquilerapp.myapplication.historialUserPakage.Presenter;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class HistorialUsuarioActivity extends BaseActivity<Presenter> implements Interfaz.view {
+public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> implements Interfaz.view {
     private TextView tvDNI;
     private TextView tvNombres;
     private TextView tvApellidoPat;
@@ -81,7 +81,7 @@ public class HistorialUsuarioActivity extends BaseActivity<Presenter> implements
 
     @NonNull
     @Override
-    protected Presenter createPresenter() {
+    protected Interfaz.presenter createPresenter() {
         return new Presenter(this, getIntent().getStringExtra(TUsuario.DNI));
     }
 

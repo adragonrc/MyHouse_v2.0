@@ -14,10 +14,6 @@ import android.widget.TextView;
 
 import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.R;
-import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
-import com.alquilerapp.myapplication.verInquilinos.Interface;
-import com.alquilerapp.myapplication.verInquilinos.Presenter;
-import com.alquilerapp.myapplication.viewUser.LinearLayoutUser;
 
 public class VerInquilinos extends BaseActivity<Interface.Presenter> implements Interface.View{
     private LinearLayout layout;

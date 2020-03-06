@@ -13,7 +13,7 @@ import com.alquilerapp.myapplication.MainActyviti.Presenter;
 import com.alquilerapp.myapplication.MenuPricipal;
 import com.alquilerapp.myapplication.R;
 
-public class MainActivity extends BaseActivity<Presenter> implements Interface.view {
+public class MainActivity extends BaseActivity<Interface.presenter> implements Interface.view {
     private EditText etUser;
     private EditText etPass;
     @Override
@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity<Presenter> implements Interface.v
 
     @NonNull
     @Override
-    protected Presenter createPresenter() {
+    protected Interface.presenter createPresenter() {
         return new Presenter(this);
     }
 

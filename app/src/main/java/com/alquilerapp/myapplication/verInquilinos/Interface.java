@@ -5,7 +5,7 @@ import com.alquilerapp.myapplication.Base.BaseView;
 import com.alquilerapp.myapplication.Base.IBasePresenter;
 
 public interface Interface {
-    interface Presenter<V extends BaseView> extends IBasePresenter<V> {
+    interface Presenter extends IBasePresenter {
         void agregarFrag();
     }
     interface View extends BaseView {
