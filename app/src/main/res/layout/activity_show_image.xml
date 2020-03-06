@@ -6,24 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.alquilerapp.myapplication.ActivityShowImage"
     android:background="@android:color/darker_gray"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <RelativeLayout
+    <uk.co.senab.photoview.PhotoView
+        android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center">
-        <uk.co.senab.photoview.PhotoView
-            android:id="@+id/ivImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:scaleType="fitCenter"
-            android:transitionName="@string/transition_name"
-            android:foregroundGravity="center"
-            android:layout_gravity="center"/>
-    </RelativeLayout>
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="fitCenter"
+        android:transitionName="@string/transition_name"
+        android:foregroundGravity="center"
+        android:layout_gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"

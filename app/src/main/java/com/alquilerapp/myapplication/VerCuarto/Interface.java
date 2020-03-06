@@ -3,7 +3,6 @@ package com.alquilerapp.myapplication.VerCuarto;
 import android.content.ContentValues;
 import android.view.View;
 
-import com.alquilerapp.myapplication.Base.BasePresenter;
 import com.alquilerapp.myapplication.Base.BaseView;
 import com.alquilerapp.myapplication.Base.IBasePresenter;
 
@@ -16,7 +15,7 @@ public interface Interface {
         void actualizarDetalles(String detalles);
         void realizarPago();
     }
-    interface View extends BaseView {
+    interface view extends BaseView {
         void noPago();
         void pago();
         void showCuartolibre(ContentValues cuarto);
@@ -28,7 +27,7 @@ public interface Interface {
         void onClickEditarDetalles(android.view.View view);
         void onClickConfirMensualidad(android.view.View view);
         void onClickConfirDetalles(android.view.View view);
-
+        void onClickPhoto(View view);
         void onClickVerAlquileres(android.view.View view);
         void actualizarMensualidad(String mensualidad);
         void actualizarDetalles(String detalles);

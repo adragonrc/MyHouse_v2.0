@@ -39,7 +39,8 @@
                         android:layout_gravity="center"
                         android:scaleType="fitCenter"
                         android:transitionName="@string/transition_name"
-                        android:contentDescription="@string/cdImageView" />
+                        android:contentDescription="@string/cdImageView"
+                        android:onClick="onClickPhoto"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"

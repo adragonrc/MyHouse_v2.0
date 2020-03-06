@@ -1,20 +1,18 @@
 package com.alquilerapp.myapplication.VerCuarto;
 
 import android.content.ContentValues;
-import android.support.annotation.NonNull;
 
 import com.alquilerapp.myapplication.Base.BasePresenter;
 import com.alquilerapp.myapplication.MyAdminDate;
 import com.alquilerapp.myapplication.UTILIDADES.Mensualidad;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TCuarto;
-import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Presentador extends BasePresenter<Interface.View> implements Interface.Presenter {
+public class Presentador extends BasePresenter<Interface.view> implements Interface.Presenter {
 
     private ContentValues datosCuarto;
     private ContentValues datosUsuario;
@@ -24,7 +22,7 @@ public class Presentador extends BasePresenter<Interface.View> implements Interf
     private MyAdminDate adminDate;
     private String numeroCuarto;
 
-    public Presentador(Interface.View view, String numeroCuarto) {
+    public Presentador(Interface.view view, String numeroCuarto) {
         super(view);
         this.numeroCuarto = numeroCuarto;
     }

@@ -6,7 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.CardView;
+import android.transition.Fade;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alquilerapp.myapplication.AdministradorCamara;
+import com.alquilerapp.myapplication.ActivityShowImage;
 import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.ListAlquileres.ListAlquileresActivity;
 import com.alquilerapp.myapplication.R;
@@ -31,7 +34,7 @@ import com.alquilerapp.myapplication.mydialog.DialogImput;
 import com.alquilerapp.myapplication.mydialog.DialogInterfaz;
 import com.alquilerapp.myapplication.mydialog.PresenterDialogImput;
 
-public class VerCuartoActivity extends BaseActivity<Interface.Presenter> implements Interface.View {
+public class VerCuartoActivity extends BaseActivity<Interface.Presenter> implements Interface.view {
 
     private TextView tvNumeroCuarto;
     private TextView tvNombres;
@@ -68,6 +71,9 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
     private View.OnClickListener listener2;
 
     private int iMenu;
+
+    private String URIPerfil;
+
     private Menu menu;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,6 +110,7 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
 
     @Override
     protected void iniciarComandos() {
+
         dip = new PresenterDialogImput(this, "ALERTA") {
             @Override
             public void positiveButtonListener(@Nullable String s) {
@@ -156,17 +163,15 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
         tvMensualidad.setText(mensualidad);
         tvDetalles.setText(cuarto.getAsString(TCuarto.DETALLES));
         //AdministradorCamara.setPic(ivPerfil, usuario.getAsString(TUsuario.URI));
-        String path =  cuarto.getAsString(TCuarto.URL);
-        if(path == null) return;
-        if(path.equals("")) return;
-        Bitmap bm = BitmapFactory.decodeFile(path);
-        ivPerfil.setImageBitmap(bm);
-
+        URIPerfil =  cuarto.getAsString(TCuarto.URL);
+        if(URIPerfil != null && !URIPerfil.equals("")) {
+            Bitmap bm = BitmapFactory.decodeFile(URIPerfil);
+            ivPerfil.setImageBitmap(bm);
+        }
         cvMensaje.setVisibility(View.GONE);
         tvFechaC.setText(presenter.getDatosAlquiler().getAsString(TAlquiler.FECHA_C));
         iMenu = R.menu.menu_cuarto;
         cvDetallesAlquiler.setVisibility(View.VISIBLE);
-
     }
 
     public void showCuartolibre(ContentValues cuarto){
@@ -240,6 +245,16 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
     }
 
     @Override
+    public void onClickPhoto(View view) {
+        Intent intent = new Intent(this, ActivityShowImage.class);
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, ivPerfil, ViewCompat.getTransitionName(ivPerfil));
+
+
+        intent.putExtra("bitMap", URIPerfil);
+        startActivity(intent, options.toBundle());
+    }
+
+    @Override
     public void onClickVerAlquileres(View view) {
         Intent i = new Intent(this, ListAlquileresActivity.class);
         i.putExtra(TCuarto.NUMERO,tvNumeroCuarto.getText().toString());
@@ -291,6 +306,7 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
 
     @Override
     protected void iniciarViews(){
+        modificarTransicion();
         tvNumeroCuarto = findViewById(R.id.tvNumeroCuarto);
         tvNombres = findViewById(R.id.tvNombres);
         tvMensualidad = findViewById(R.id.vcTvMensualidad);
