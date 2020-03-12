@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 style="@style/TextImputStyle"
                 android:orientation="horizontal">
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
@@ -49,7 +49,7 @@
                         android:hint="@string/sDni"
                         android:inputType="number"
                         android:maxLength="8"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
 
             </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 style="@style/TextImputStyle"
                 android:layout_height="wrap_content">
@@ -71,7 +71,7 @@
                     android:ems="10"
                     android:hint="@string/sNombreUser"
                     android:inputType="textCapSentences"/>
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 style="@style/TextImputStyle"
@@ -80,7 +80,7 @@
                 android:orientation="horizontal"
                 android:baselineAligned="false">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
@@ -94,9 +94,9 @@
                         android:hint="@string/sApePat"
                         android:nextFocusUp="@id/etApellidoMat"
                         android:inputType="textCapSentences" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="1"
@@ -109,7 +109,7 @@
                         android:ems="10"
                         android:hint="@string/sApeMat"
                         android:inputType="textCapSentences" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -135,7 +135,7 @@
                     android:spinnerMode="dropdown" />
             </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 style="@style/TextImputStyle"
                 android:layout_height="wrap_content">
@@ -146,7 +146,7 @@
                     android:ems="10"
                     android:hint="@string/sMensualidad"
                     android:inputType="numberDecimal" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/textView3"
@@ -246,4 +246,4 @@
             android:textStyle="bold"
             android:text="@string/sBtAgregar" />
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

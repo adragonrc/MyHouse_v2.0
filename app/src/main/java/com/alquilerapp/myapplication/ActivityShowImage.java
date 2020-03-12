@@ -2,14 +2,13 @@ package com.alquilerapp.myapplication;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.ChangeBounds;
-import android.transition.Fade;
-import android.transition.Transition;
 import android.view.View;
 
-import uk.co.senab.photoview.PhotoView;
+import com.github.chrisbanes.photoview.PhotoView;
+
 
 public class ActivityShowImage extends AppCompatActivity {
 
@@ -33,7 +32,6 @@ public class ActivityShowImage extends AppCompatActivity {
 
         if(uri != null && !uri.equals("")) {
             photoView.setImageBitmap(BitmapFactory.decodeFile(uri));
-
         }
 
 

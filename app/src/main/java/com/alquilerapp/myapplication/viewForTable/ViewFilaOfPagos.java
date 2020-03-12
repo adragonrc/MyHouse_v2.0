@@ -1,7 +1,6 @@
 package com.alquilerapp.myapplication.viewForTable;
 
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

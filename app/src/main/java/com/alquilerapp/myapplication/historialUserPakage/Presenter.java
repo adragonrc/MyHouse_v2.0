@@ -1,23 +1,16 @@
 package com.alquilerapp.myapplication.historialUserPakage;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.view.ViewCompat;
+
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import android.widget.ImageView;
 
-import com.alquilerapp.myapplication.ActivityShowImage;
-import com.alquilerapp.myapplication.AlquilerUsuario.Item;
 import com.alquilerapp.myapplication.Base.BasePresenter;
-import com.alquilerapp.myapplication.TableCursor;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
-
-import java.util.ArrayList;
 
 public class Presenter extends BasePresenter<Interfaz.view> implements Interfaz.presenter {
 

@@ -10,7 +10,7 @@ public class Mensualidad {
     public static final String CREATE_TABLE=
             "create table " + T_NOMBRE + "(" +
                     ID + " integer primary key autoincrement not null,"+
-                    FECHA_I + " varchar(10)," +
+                    FECHA_I + " datetime," +
                     COSTO + " double," +
                     ID_A + " integer," +
                     "foreign key ("+ ID_A+ ")references "+TAlquiler.T_NOMBRE +"("+TAlquiler.ID+")"+

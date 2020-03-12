@@ -1,16 +1,11 @@
 package com.alquilerapp.myapplication.agregarCuarto;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.MediaScannerConnection;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,16 +16,7 @@ import com.alquilerapp.myapplication.AdministradorCamara;
 import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.Save;
-import com.alquilerapp.myapplication.agregarCuarto.Interfaz;
-import com.alquilerapp.myapplication.agregarCuarto.Presenter;
 import com.theartofdev.edmodo.cropper.CropImage;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class AgregarCuarto extends BaseActivity<Interfaz.Presenter> implements Interfaz.View {
     private EditText numeroDeCuarto;

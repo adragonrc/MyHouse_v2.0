@@ -1,15 +1,21 @@
 package com.alquilerapp.myapplication.VerCuarto;
 
 import android.content.ContentValues;
+import android.content.Intent;
+import android.view.View;
 
 import com.alquilerapp.myapplication.Base.BasePresenter;
 import com.alquilerapp.myapplication.MyAdminDate;
+import com.alquilerapp.myapplication.PDF;
 import com.alquilerapp.myapplication.UTILIDADES.Mensualidad;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TCuarto;
+import com.alquilerapp.myapplication.ViewPdfActivity;
+import com.alquilerapp.myapplication.Voucher;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Presentador extends BasePresenter<Interface.view> implements Interface.Presenter {
@@ -98,7 +104,7 @@ public class Presentador extends BasePresenter<Interface.view> implements Interf
 
     @Override
     public void realizarPago() {
-        String s = adminDate.getFecha(datosAlquiler.getAsString(TAlquiler.FECHA_C));
+ /*       String s = adminDate.getFecha(datosAlquiler.getAsString(TAlquiler.FECHA_C));
         if(db.agregarPago(adminDate.getDateFormat().format(new Date()),datosMensualidad.getAsLong(Mensualidad.ID))){
             view.showMensaje("pago agregado");
             db.upDateAlquiler(TAlquiler.FECHA_C,s,datosAlquiler.getAsInteger(TAlquiler.ID));
@@ -106,5 +112,11 @@ public class Presentador extends BasePresenter<Interface.view> implements Interf
         }else{
             view.showMensaje("Error al pagar");
         }
+
+  */
+        Voucher voucher = new Voucher(datosCuarto, datosUsuario, datosMensualidad, datosAlquiler);
+        view.mostrarPDF(voucher.crearVoucher().getPdfFile());
     }
+
+
 }

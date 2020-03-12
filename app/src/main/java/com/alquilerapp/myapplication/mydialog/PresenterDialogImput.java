@@ -1,11 +1,10 @@
 package com.alquilerapp.myapplication.mydialog;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 
 import com.alquilerapp.myapplication.R;
 

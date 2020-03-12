@@ -1,15 +1,12 @@
 package com.alquilerapp.myapplication.MainActyviti;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.CambiarContrasenia;
-import com.alquilerapp.myapplication.MainActyviti.Interface;
-import com.alquilerapp.myapplication.MainActyviti.Presenter;
 import com.alquilerapp.myapplication.MenuPricipal;
 import com.alquilerapp.myapplication.R;
 

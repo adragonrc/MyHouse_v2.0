@@ -1,13 +1,12 @@
 package com.alquilerapp.myapplication.ListAlquileres;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alquilerapp.myapplication.Adapters.RvAdapterAlquiler;
 import com.alquilerapp.myapplication.Base.BaseActivity;
-import com.alquilerapp.myapplication.Base.BasePresenter;
 import com.alquilerapp.myapplication.Base.IBasePresenter;
 import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.tableActivity.TableActivity;

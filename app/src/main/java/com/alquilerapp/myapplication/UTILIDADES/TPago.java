@@ -9,7 +9,7 @@ public class TPago {
     public static final String CREATE_TABLE =
             "create table " + T_NOMBRE + "(" +
                     ID + " integer primary key autoincrement not null,"+
-                    FECHA + " varchar(10)," +
+                    FECHA + " datetime," +
                     ID_M+ " integer," +
                     DNI+ " integer," +
                     "foreign key ("+ ID_M + ")references " + Mensualidad.T_NOMBRE +"("+Mensualidad.ID+"),"+

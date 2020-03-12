@@ -6,6 +6,8 @@ import android.view.View;
 import com.alquilerapp.myapplication.Base.BaseView;
 import com.alquilerapp.myapplication.Base.IBasePresenter;
 
+import java.io.File;
+
 public interface Interface {
     interface Presenter extends IBasePresenter {
         ContentValues getDatosAlquiler();
@@ -27,6 +29,7 @@ public interface Interface {
         void onClickEditarDetalles(android.view.View view);
         void onClickConfirMensualidad(android.view.View view);
         void onClickConfirDetalles(android.view.View view);
+        void mostrarPDF (File pdfFile);
         void onClickPhoto(View view);
         void onClickVerAlquileres(android.view.View view);
         void actualizarMensualidad(String mensualidad);

@@ -1,22 +1,17 @@
 package com.alquilerapp.myapplication.Base;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import android.transition.ChangeBounds;
-import android.transition.Fade;
-import android.transition.Transition;
 import android.view.View;
 import android.widget.Toast;
 
 import com.alquilerapp.myapplication.R;
-
-import java.io.IOError;
 
 
 public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatActivity implements BaseView{

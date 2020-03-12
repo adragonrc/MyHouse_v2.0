@@ -5,9 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.widget.Toast;
 
 import com.alquilerapp.myapplication.DataBase.DataBaseInterface;
@@ -18,7 +18,6 @@ import com.alquilerapp.myapplication.UTILIDADES.TPago;
 import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
 
 import java.util.ArrayList;
-import java.util.IllegalFormatCodePointException;
 
 public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface {
     private Context context;

@@ -1,6 +1,6 @@
 package com.alquilerapp.myapplication.tableActivity;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.widget.LinearLayout;
 
 import com.alquilerapp.myapplication.Base.BaseActivity;
@@ -8,8 +8,6 @@ import com.alquilerapp.myapplication.Base.IBasePresenter;
 import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.ViewMensualidad;
-import com.alquilerapp.myapplication.tableActivity.Interfaz;
-import com.alquilerapp.myapplication.tableActivity.Presenter;
 import com.alquilerapp.myapplication.viewForTable.ViewFilaOfPagos;
 
 

@@ -2,33 +2,23 @@ package com.alquilerapp.myapplication.historialUserPakage;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.view.ViewCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import android.transition.Fade;
-import android.transition.Transition;
-import android.transition.TransitionValues;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alquilerapp.myapplication.ActivityShowImage;
-import com.alquilerapp.myapplication.AdministradorCamara;
 import com.alquilerapp.myapplication.AlquilerUsuario.AlquilerUsuarioActivity;
 import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
-import com.alquilerapp.myapplication.historialUserPakage.Interfaz;
-import com.alquilerapp.myapplication.historialUserPakage.Presenter;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 

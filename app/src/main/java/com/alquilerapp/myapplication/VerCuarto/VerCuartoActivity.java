@@ -4,12 +4,12 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.CardView;
-import android.transition.Fade;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
+import androidx.cardview.widget.CardView;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +22,7 @@ import com.alquilerapp.myapplication.ActivityShowImage;
 import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.ListAlquileres.ListAlquileresActivity;
 import com.alquilerapp.myapplication.R;
+import com.alquilerapp.myapplication.ViewPdfActivity;
 import com.alquilerapp.myapplication.tableActivity.TableActivity;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TCuarto;
@@ -33,6 +34,8 @@ import com.alquilerapp.myapplication.mydialog.DialogConfirm;
 import com.alquilerapp.myapplication.mydialog.DialogImput;
 import com.alquilerapp.myapplication.mydialog.DialogInterfaz;
 import com.alquilerapp.myapplication.mydialog.PresenterDialogImput;
+
+import java.io.File;
 
 public class VerCuartoActivity extends BaseActivity<Interface.Presenter> implements Interface.view {
 
@@ -137,6 +140,7 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
         dcp = new DialogInterfaz.DialogConfirmPresenter() {
             @Override
             public void positiveButtonListener() {
+
                 presenter.realizarPago();
 
             }
@@ -244,6 +248,12 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
         presenter.actualizarDetalles(etDetalles.getText().toString());
     }
 
+    public void mostrarPDF (File pdfFile){
+        Intent intent = new Intent(this, ViewPdfActivity.class);
+        intent.putExtra("path", pdfFile.getAbsolutePath());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
     @Override
     public void onClickPhoto(View view) {
         Intent intent = new Intent(this, ActivityShowImage.class);

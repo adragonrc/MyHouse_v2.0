@@ -15,8 +15,8 @@ public class TAlquiler{
     public static final String CREATE_TABLE =
             "create table " + T_NOMBRE + "(" +
                     ID + " integer primary key autoincrement not null,"+
-                    FECHA + " varchar(10)," +
-                    FECHA_C + " varchar(10)," +
+                    FECHA + " datetime," +
+                    FECHA_C + " datetime," +
                     MOTIVO + " text," +
                     VAL + " boolean," +
                     ALERT+ " bool," +

@@ -1,14 +1,13 @@
 package com.alquilerapp.myapplication.verUsuario;
 
 import android.content.ContentValues;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.R;
@@ -20,8 +19,6 @@ import com.alquilerapp.myapplication.mydialog.DialogConfirm;
 import com.alquilerapp.myapplication.mydialog.DialogImput;
 import com.alquilerapp.myapplication.mydialog.DialogInterfaz;
 import com.alquilerapp.myapplication.mydialog.PresenterDialogImput;
-import com.alquilerapp.myapplication.verUsuario.Interfaz;
-import com.alquilerapp.myapplication.verUsuario.Presentador;
 
 public class VerUsuario extends BaseActivity<Interfaz.Presenter> implements Interfaz.View{
     private TextView tvDni;

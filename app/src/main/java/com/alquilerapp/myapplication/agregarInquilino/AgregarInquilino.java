@@ -5,8 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.alquilerapp.myapplication.Base.BaseActivity;
+import com.alquilerapp.myapplication.MyAdminDate;
 import com.alquilerapp.myapplication.Save;
 import com.alquilerapp.myapplication.historialUserPakage.HistorialUsuarioActivity;
 import com.alquilerapp.myapplication.R;
@@ -50,6 +51,7 @@ public class AgregarInquilino extends BaseActivity<Interfaz.Presenter> implement
             Intent i = new Intent(getContext(), HistorialUsuarioActivity.class);
             i.putExtra(TUsuario.DNI, etDNI.getText().toString());
             startActivity(i);
+
         }
     };
     private DialogInterface.OnClickListener negativo = new DialogInterface.OnClickListener() {
@@ -77,9 +79,11 @@ public class AgregarInquilino extends BaseActivity<Interfaz.Presenter> implement
 
     }
     private void agregar(){
-        String fecha = spDia.getSelectedItem().toString()+ "/"  + spMes.getSelectedItem().toString() +"/" +spAnio.getSelectedItem().toString();
+        //String fecha = spDia.getSelectedItem().toString()+ "/"  + spMes.getSelectedItem().toString() +"/" +spAnio.getSelectedItem().toString();
+        String fecha ;
         Save s = new Save();
-        //ivPhoto.buildDrawingCache();
+
+        fecha =  MyAdminDate.buidFecha(spAnio.getSelectedItem().toString(), spMes.getSelectedItem().toString(), spDia.getSelectedItem().toString());
         currentImagePath = s.SaveImage(this, bmGuardar);
 
         presenter.agregarUsuario(etDNI.getText().toString(), etNombre.getText().toString(),
