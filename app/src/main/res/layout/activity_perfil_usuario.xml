@@ -23,11 +23,6 @@
             android:divider="?android:listDivider"
             android:showDividers="middle">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
-
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -36,10 +31,9 @@
                         android:id="@+id/imPhoto"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:layout_gravity="center"
                         android:contentDescription="@string/cdImageView"
-                        android:scaleType="fitCenter"
-                        android:transitionName="transition_photo"
+                        android:scaleType="centerCrop"
+                        android:transitionName="@string/transition_name"
                         android:onClick="onClickPhoto"/>
 
                     <LinearLayout
@@ -65,7 +59,6 @@
                             android:textColor="@color/secondaryTextColor" />
                     </LinearLayout>
                 </FrameLayout>
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

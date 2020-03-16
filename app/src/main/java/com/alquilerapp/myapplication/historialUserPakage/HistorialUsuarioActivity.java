@@ -2,12 +2,9 @@ package com.alquilerapp.myapplication.historialUserPakage;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
-import android.transition.Fade;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,7 +17,6 @@ import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
 
-import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> implements Interfaz.view {
     private TextView tvDNI;
@@ -43,21 +39,6 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
     private ImageView imPhoto;
 
     private String uriPhoto;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Fade fade = new Fade();
-        View decor = getWindow().getDecorView();
-        fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
-        fade.excludeTarget(android.R.id.statusBarBackground, true);
-        fade.excludeTarget(android.R.id.navigationBarBackground, true);
-
-        getWindow().setEnterTransition(fade);
-        getWindow().setExitTransition(fade);
-
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-    }
 
     @Override
     protected void iniciarComandos() {
@@ -94,7 +75,6 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
         tvApellidoMat.setText(datos.getAsString(TUsuario.APELLIDO_MAT));
         uriPhoto = datos.getAsString(TUsuario.URI);
         presenter.setImage(imPhoto, uriPhoto);
-      //  AdministradorCamara.setPic(imPhoto, datos.getAsString(TUsuario.URI));
         tvNumAlquiler.setText(i);
     }
 
@@ -179,7 +159,7 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
         Intent intent = new Intent(this, ActivityShowImage.class);
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imPhoto, ViewCompat.getTransitionName(imPhoto));
 
-        intent.putExtra("bitMap", uriPhoto);
+        intent.putExtra(ActivityShowImage.DATA_IMAGE, uriPhoto);
         startActivity(intent, options.toBundle());
     }
 
@@ -211,6 +191,7 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
 
     @Override
     protected void iniciarViews() {
+        modificarTransicion();
         tvDNI = findViewById(R.id.hutvDNI);
         tvNombres = findViewById(R.id.hutvNombres);
         tvApellidoPat = findViewById(R.id.hutvApePat);

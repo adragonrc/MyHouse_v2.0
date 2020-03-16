@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
 import android.transition.ChangeBounds;
+import android.transition.Fade;
 import android.view.View;
 import android.widget.Toast;
 
@@ -54,8 +55,7 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
     }
 
     public void modificarTransicion(){
-        ChangeBounds fade =  new ChangeBounds();
-        //Fade fade = new Fade();
+        Fade fade = new Fade();
         View decor = getWindow().getDecorView();
         fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
         fade.excludeTarget(android.R.id.statusBarBackground, true);

@@ -187,10 +187,10 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
         iMenu = R.menu.menu_cuarto_no_alquilado;
         tvDetalles.setText(cuarto.getAsString(TCuarto.DETALLES));
         //AdministradorCamara.setPic(ivPerfil, cuarto.getAsString(TCuarto.URL));
-        String path =  cuarto.getAsString(TCuarto.URL);
-        if(path == null) return;
-        if(path.equals("")) return;
-        Bitmap bm = BitmapFactory.decodeFile(path);
+        URIPerfil =  cuarto.getAsString(TCuarto.URL);
+        if(URIPerfil == null) return;
+        if(URIPerfil.equals("")) return;
+        Bitmap bm = BitmapFactory.decodeFile(URIPerfil);
         ivPerfil.setImageBitmap(bm);
 
         cvMensaje.setVisibility(View.GONE);
@@ -260,7 +260,7 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, ivPerfil, ViewCompat.getTransitionName(ivPerfil));
 
 
-        intent.putExtra("bitMap", URIPerfil);
+        intent.putExtra(ActivityShowImage.DATA_IMAGE, URIPerfil);
         startActivity(intent, options.toBundle());
     }
 
