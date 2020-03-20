@@ -8,9 +8,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.database.sqlite.SQLiteQuery;
+import android.hardware.camera2.DngCreator;
 import android.widget.Toast;
 
 import com.alquilerapp.myapplication.DataBase.DataBaseInterface;
+import com.alquilerapp.myapplication.Modelos.ModelUsuario;
 import com.alquilerapp.myapplication.UTILIDADES.Mensualidad;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TCuarto;
@@ -76,9 +80,22 @@ public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface
         long l = writableDatabase.insert(tableName,null,cv);
         writableDatabase.close();
         cv.clear();
-        return l!=-1;
+        return l != -1;
     }
 
+    private boolean revertir(String tableName, String columKey, String key){
+        SQLiteDatabase sql = getWritableDatabase();
+        int i =  sql.delete(tableName, columKey + " = " + key, null);
+        sql.close();
+        return i > 0;
+    }
+
+    private boolean revertir(String tableName, String clausule){
+        SQLiteDatabase sql = getWritableDatabase();
+        int i =  sql.delete(tableName, clausule, null);
+        sql.close();
+        return i > 0;
+    }
     private void upDate(String consulta){
         SQLiteDatabase editor = this.getWritableDatabase();
         editor.execSQL(consulta);
@@ -256,7 +273,7 @@ public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface
         return  c.moveToNext();
     }
     @Override
-    public boolean agregarInquilino(int DNI,String nombres, String apellidoPat, String apellidoMat, String URI){
+    public boolean agregarInquilino(String DNI,String nombres, String apellidoPat, String apellidoMat, String URI){
         cv.put(TUsuario.DNI, DNI);
         cv.put(TUsuario.NOMBRES, nombres);
         cv.put(TUsuario.APELLIDO_PAT, apellidoPat);
@@ -264,7 +281,18 @@ public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface
         cv.put(TUsuario.URI, URI);
         return agregar(TUsuario.T_NOMBRE);
     }
-    public boolean agregarAlquiler(int DNI, String numC, String fecha, String fecha_c){
+    public boolean agregarInquilino(ModelUsuario mu){
+        cv.put(TUsuario.DNI, mu.getDni());
+        cv.put(TUsuario.NOMBRES, mu.getNombres());
+        cv.put(TUsuario.APELLIDO_PAT, mu.getApellidoPat());
+        cv.put(TUsuario.APELLIDO_MAT, mu.getApellidoMat());
+        cv.put(TUsuario.NUMERO_TEL, mu.getNumero());
+        cv.put(TUsuario.CORREO, mu.getCorreo());
+        cv.put(TUsuario.URI, mu.getUriPhoto());
+        return agregar(TUsuario.T_NOMBRE);
+    }
+
+    public boolean agregarAlquiler(String DNI, String numC, String fecha, String fecha_c){
         cv.put(TAlquiler.FECHA, fecha);
         cv.put(TAlquiler.FECHA_C, fecha_c);
         cv.put(TAlquiler.VAL, "1");
@@ -285,63 +313,50 @@ public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface
         return agregar(TPago.T_NOMBRE);
     }
 
-    public void agregarInquilinoExist(int DNI, String numC, double costo, @NonNull String fecha_i, @Nullable String fecha_c){
-        SQLiteDatabase writableDatabase;
+    public boolean agregarInquilinoExist(String DNI, String numC, double costo, @NonNull String fecha_i, @Nullable String fecha_c){
         boolean f = true;
         if (fecha_c == null) {
             fecha_c = fecha_i;
             f =false;
         }
         if (agregarAlquiler(DNI, numC, fecha_i,fecha_c)){
-            writableDatabase = getWritableDatabase();
-            Cursor fila = writableDatabase.rawQuery("select max(" + TAlquiler.ID + ") from " + TAlquiler.T_NOMBRE + ";", null);
-            if (fila.moveToFirst()) {
-                long idMax = fila.getInt(0);
-                if (agregarMensualidad(costo, fecha_i, idMax)) {
-                    if (f) {
-                        fila.close();
-                        writableDatabase = getWritableDatabase();
-                        fila = writableDatabase.rawQuery("select max(" + Mensualidad.ID + ") from " + Mensualidad.T_NOMBRE + ";", null);
-                        if (fila.moveToFirst()){
-                            idMax = fila.getInt(0);
-                            agregarPago(fecha_c, idMax);
-                        }
-                    }
+            long idMax = getIdMaxAlquiler();
+            if (agregarMensualidad(costo, fecha_i, idMax)) {
+                if (f) {
+                    idMax = getIDMaxMensualidad();
+                    agregarPago(fecha_c, idMax);
+                    return  true;
+                }else{
+                    return true;
                 }
+            }else{
+                revertir(TAlquiler.T_NOMBRE, TAlquiler.ID, String.valueOf(idMax));
+                revertir(TUsuario.T_NOMBRE, TUsuario.DNI, DNI);
             }
-            fila.close();
-            writableDatabase.close();
+        }else{
+            revertir(TUsuario.T_NOMBRE, TUsuario.DNI, DNI);
         }
+        return false;
+
     }
-    public void agregarNuevoInquilino(int DNI, String nombres, String apellidoPat, String apellidoMat, String uri, String numC, double costo, @NonNull String fecha_i, @Nullable String fecha_c) {
-        SQLiteDatabase writableDatabase;
-        boolean f = true;
-        if (fecha_c == null) {
-            fecha_c = fecha_i;
-            f =false;
+    public boolean agregarNuevoInquilino(ModelUsuario mu, String numC, double costo, @NonNull String fecha_i, @Nullable String fecha_c) {
+        if (agregarInquilino(mu)){
+            return agregarInquilinoExist(mu.getDni(), numC, costo, fecha_i, fecha_c);
         }
-        if (agregarInquilino(DNI, nombres, apellidoPat, apellidoMat, uri)){
-            if (agregarAlquiler(DNI, numC, fecha_i,fecha_c)){
-                writableDatabase = getWritableDatabase();
-                Cursor fila = writableDatabase.rawQuery("select max(" + TAlquiler.ID + ") from " + TAlquiler.T_NOMBRE + ";", null);
-                if (fila.moveToFirst()) {
-                    long idMax = fila.getInt(0);
-                    if (agregarMensualidad(costo, fecha_i, idMax)) {
-                        if (f) {
-                            fila.close();
-                            writableDatabase = getWritableDatabase();
-                            fila = writableDatabase.rawQuery("select max(" + Mensualidad.ID + ") from " + Mensualidad.T_NOMBRE + ";", null);
-                            if (fila.moveToFirst()){
-                                idMax = fila.getInt(0);
-                                agregarPago(fecha_c, idMax);
-                            }
-                        }
-                    }
-                }
-                fila.close();
-                writableDatabase.close();
-            }
-        }
+        return false;
+    }
+    private long getIdMax(String tabla, String columName){
+        SQLiteDatabase writableDatabase = getWritableDatabase();
+        Cursor fila = writableDatabase.rawQuery("select max(" + columName + ") from " + tabla + ";", null);
+        if (fila.moveToFirst()) return fila.getLong(0);
+        else return -1;
+
+    }
+    public long getIDMaxMensualidad(){
+        return getIdMax(Mensualidad.T_NOMBRE, Mensualidad.ID);
+    }
+    public long getIdMaxAlquiler(){
+        return getIdMax(TAlquiler.T_NOMBRE, TAlquiler.ID);
     }
     public String[] consultarNumerosDeCuartoDisponibles(){
         SQLiteDatabase bd = this.getWritableDatabase();
@@ -387,6 +402,7 @@ public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface
         return cv;
     }
     public void startScrips(){
+        /*
         agregarCuarto("1","detalle1","150.00", "");
         agregarCuarto("2","detalle2","180.00", "");
         agregarCuarto("3","detalle3","130.00", "");
@@ -485,7 +501,7 @@ public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface
         agregarPago("24/04/2020",15);
         agregarPago("24/05/2020",15);
         agregarPago("24/06/2020",15);
-        agregarPago("24/07/2020",15);
+        agregarPago("24/07/2020",15);*/
     }
 
 }

@@ -20,7 +20,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PDF {
     private File pdfFile;
@@ -32,22 +35,36 @@ public class PDF {
     private Font fText = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
     private Font fHint = new Font(Font.FontFamily.TIMES_ROMAN, 15, Font.NORMAL);
 
-    public  void openDocument(){
+    public void createFile(){
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String fileName = "VPDF_" + timeStamp + ".pdf";
+
+        File folder = new File(Environment.getExternalStorageDirectory().toString(), "Vouchers");
+        if (!folder.exists())   folder.mkdir();
+        pdfFile = new File(folder, fileName);
+    }
+    public  void openDocument() throws DocumentException, FileNotFoundException {
         createFile();
-        try {
-            document = new Document(PageSize.A4);
-            pdfWriter = PdfWriter.getInstance(document, new FileOutputStream((pdfFile)));
-            document.open();
-        } catch (DocumentException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        document = new Document(PageSize.A4);
+        pdfWriter = PdfWriter.getInstance(document, new FileOutputStream((pdfFile)));
+        document.open();
+
     }
 
-    private void createFile(){
-        File folder = new File(Environment.getExternalStorageDirectory().toString(), "PDF");
-        if (!folder.exists())   folder.mkdir();
+    public void crearVoucher(String numCuarto, String numVoucher, String costo) throws FileNotFoundException, DocumentException {
+        openDocument();
+        addMetaData("Alquiler", "voucher", "AlexRodriguez");
 
-        pdfFile = new File(folder, "TemplatePDF.pdf");
+        addParagraph("RECIBO DE ALQUILER");
+        addParagraph("(direccion de casa) - N° HABITACION " + numCuarto);
+        addParagraph(MyAdminDate.getFechaActual());
+        addParagraph("PAGO REALIZADO N°:  #    "+ numVoucher);
+        addParagraph("--------------------------------------------------------");
+        addParagraph("VALOR DE PAGO:     S/  "+ costo);
+        addParagraph("ESTE ES UN COMPROVANTE DE PAGO \nDE PRUEBA");
+        addParagraph("--------------------------------------------------------");
+        addParagraph("GRACIAS POR PAGAR A TIEMPO");
+        closeDocument();
     }
 
     public void closeDocument(){

@@ -5,14 +5,20 @@ public class ModelUsuario {
     private String nombres;
     private String apellidoPat;
     private String apellidoMat;
+    private String numero;
+    private String correo;
     private String alert;
+    private String uriPhoto;
 
-    public ModelUsuario(String dni, String nombres, String apellidoPat, String apellidoMat, String alert) {
+    public ModelUsuario(String dni, String nombres, String apellidoPat, String apellidoMat, String numero, String correo, String alert, String uriPhoto) {
         this.dni = dni;
         this.nombres = nombres;
         this.apellidoPat = apellidoPat;
         this.apellidoMat = apellidoMat;
+        this.numero = numero;
+        this.correo = correo;
         this.alert = alert;
+        this.uriPhoto = uriPhoto;
     }
 
     public String getAlert() {
@@ -27,6 +33,14 @@ public class ModelUsuario {
         return nombres;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
     public String getApellidoMat() {
         return apellidoMat;
     }
@@ -34,4 +48,9 @@ public class ModelUsuario {
     public String getApellidoPat() {
         return apellidoPat;
     }
+
+    public String getUriPhoto() {
+        return uriPhoto;
+    }
+
 }

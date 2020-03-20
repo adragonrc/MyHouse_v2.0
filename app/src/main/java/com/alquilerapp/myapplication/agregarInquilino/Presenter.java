@@ -3,7 +3,10 @@ package com.alquilerapp.myapplication.agregarInquilino;
 import android.widget.ArrayAdapter;
 import android.widget.RadioGroup;
 
+import androidx.annotation.Nullable;
+
 import com.alquilerapp.myapplication.Base.BasePresenter;
+import com.alquilerapp.myapplication.Modelos.ModelUsuario;
 import com.alquilerapp.myapplication.MyAdminDate;
 import com.alquilerapp.myapplication.R;
 
@@ -27,12 +30,13 @@ public class Presenter extends BasePresenter<Interfaz.View> implements Interfaz.
     }
 
     @Override
-    public void agregarUsuario(String DNI, String nombres, String apellidoPat, String apellidoMat, String uri, String numCuarto, String mensualidad, String fecha, boolean pago) {
-        if(uri == null || uri.equals("")){
+    public void agregarUsuario(ModelUsuario mu, String numCuarto, String mensualidad,  String fecha, boolean pago) {
+
+        if(mu.getUriPhoto() == null ||  mu.getUriPhoto().equals("")){
             view.showMensaje("agrega una foto");
             return;
         }
-        if (validarImputs(DNI, nombres, apellidoPat, numCuarto, mensualidad, fecha)){
+        if (validarImputs(mu.getDni(), mu.getNombres(), mu.getApellidoPat(), mu.getApellidoMat(), numCuarto, mensualidad)){
             String fecha_c = null;
             if (pago) {
                 try {
@@ -45,28 +49,28 @@ public class Presenter extends BasePresenter<Interfaz.View> implements Interfaz.
                     return;
                 }
             }
-            if (db.existeUsuario(DNI)){
+            if (db.existeUsuario(mu.getDni())){
                 if (confirmacion){
                     try {
-                        db.agregarInquilinoExist(Integer.parseInt(DNI), numCuarto, Double.parseDouble(mensualidad), fecha, fecha_c);
+                        db.agregarInquilinoExist(mu.getDni(), numCuarto, Double.parseDouble(mensualidad), fecha, fecha_c);
                         view.showMensaje("Alquiler Agregado");
                         view.close();
                     }catch (IllegalAccessError error){
                         view.showError("error, agregar usuario");
                     }
                 }else{
-                    if (db.esUsuarioAntiguo(DNI)){
+                    if (db.esUsuarioAntiguo(mu.getDni())){
                         view.showMensaje("número DNI ya esta registrado");
                         view.showDialog("Usuario Antiguo");
                 }else {
-                    if (db.esUsuarioInterno(DNI)) {
+                    if (db.esUsuarioInterno(mu.getDni())) {
                         view.showMensaje("Usuario ya se encuentra en casa ;v");
                     }
                 }
                 }
             }else{
                 try {
-                    db.agregarNuevoInquilino(Integer.parseInt(DNI), nombres, apellidoPat, apellidoMat, uri, numCuarto, Double.parseDouble(mensualidad), fecha, fecha_c);
+                    db.agregarNuevoInquilino(mu, numCuarto, Double.parseDouble(mensualidad), fecha, fecha_c);
                     view.showMensaje("Usuario Agregado");
                     view.close();
                 }catch (IllegalAccessError error){

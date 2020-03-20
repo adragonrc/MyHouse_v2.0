@@ -5,13 +5,14 @@ import android.widget.RadioGroup;
 
 import com.alquilerapp.myapplication.Base.BaseView;
 import com.alquilerapp.myapplication.Base.IBasePresenter;
+import com.alquilerapp.myapplication.Modelos.ModelUsuario;
 
 import java.util.ArrayList;
 
 public interface Interfaz {
     interface Presenter  extends IBasePresenter{
         boolean doPago(RadioGroup radioGroup);
-        void agregarUsuario(String DNI, String nombres, String apellidoPat, String apellidoMat, String uri, String numCuarto, String mensualidad, String fecha, boolean pago);
+        void agregarUsuario(ModelUsuario mu, String numCuarto, String mensualidad, String fecha, boolean pago);
          void confirmar();
     }
     interface View extends BaseView {

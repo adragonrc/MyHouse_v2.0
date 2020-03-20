@@ -12,7 +12,9 @@ import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TCuarto;
 import com.alquilerapp.myapplication.ViewPdfActivity;
 import com.alquilerapp.myapplication.Voucher;
+import com.itextpdf.text.DocumentException;
 
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -113,9 +115,18 @@ public class Presentador extends BasePresenter<Interface.view> implements Interf
             view.showMensaje("Error al pagar");
         }
 
+
+
   */
-        Voucher voucher = new Voucher(datosCuarto, datosUsuario, datosMensualidad, datosAlquiler);
-        view.mostrarPDF(voucher.crearVoucher().getPdfFile());
+        PDF pdf = new PDF();
+        try {
+            pdf.crearVoucher(datosCuarto.getAsString(TCuarto.NUMERO), "000",datosMensualidad.getAsString(Mensualidad.COSTO));
+            view.mostrarPDF(pdf.getPdfFile());
+        } catch (FileNotFoundException e) {
+            view.showMensaje("error al crear el archivo");
+        } catch (DocumentException e) {
+            view.showMensaje("error al crear el documento");
+        }
     }
 
 

@@ -16,6 +16,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.alquilerapp.myapplication.Base.BaseActivity;
+import com.alquilerapp.myapplication.Modelos.ModelCuarto;
+import com.alquilerapp.myapplication.Modelos.ModelUsuario;
 import com.alquilerapp.myapplication.MyAdminDate;
 import com.alquilerapp.myapplication.Save;
 import com.alquilerapp.myapplication.historialUserPakage.HistorialUsuarioActivity;
@@ -34,6 +36,8 @@ public class AgregarInquilino extends BaseActivity<Interfaz.Presenter> implement
     private EditText etApellidoPat;
     private EditText etApellidoMat;
     private EditText etPrecio;
+    private EditText etCorreo;
+    private EditText etNumeroTelef;
 
     private ImageView ivPhoto;
 
@@ -85,10 +89,12 @@ public class AgregarInquilino extends BaseActivity<Interfaz.Presenter> implement
 
         fecha =  MyAdminDate.buidFecha(spAnio.getSelectedItem().toString(), spMes.getSelectedItem().toString(), spDia.getSelectedItem().toString());
         currentImagePath = s.SaveImage(this, bmGuardar);
-
-        presenter.agregarUsuario(etDNI.getText().toString(), etNombre.getText().toString(),
-                etApellidoPat.getText().toString(), etApellidoMat.getText().toString(), currentImagePath, spNumCuarto.getSelectedItem().toString(),
-                etPrecio.getText().toString(),fecha, presenter.doPago(radioGroup));
+        ModelUsuario mu = new ModelUsuario(etDNI.getText().toString(),  etNombre.getText().toString(), etApellidoPat.getText().toString(), etApellidoMat.getText().toString(), etNumeroTelef.getText().toString(), etCorreo.getText().toString(), "0", currentImagePath);
+        presenter.agregarUsuario( mu,
+                spNumCuarto.getSelectedItem().toString(),
+                etPrecio.getText().toString(),
+                fecha,
+                presenter.doPago(radioGroup));
 
     }
 
@@ -194,6 +200,9 @@ public class AgregarInquilino extends BaseActivity<Interfaz.Presenter> implement
         etApellidoPat = findViewById(R.id.etApellidoPat);
         etApellidoMat = findViewById(R.id.etApellidoMat);
         etPrecio = findViewById(R.id.etPrecio);
+        etNumeroTelef = findViewById(R.id.etNumeroTelefono);
+        etCorreo = findViewById(R.id.etCorreo);
+
         spNumCuarto = findViewById(R.id.spNumCuartos);
         spDia = findViewById(R.id.spDia);
         spMes= findViewById(R.id.spMes);
