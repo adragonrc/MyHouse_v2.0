@@ -248,9 +248,12 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
         presenter.actualizarDetalles(etDetalles.getText().toString());
     }
 
-    public void mostrarPDF (File pdfFile){
+    @Override
+    public void mostrarPDF (File pdfFile, ContentValues datosUsuario){
         Intent intent = new Intent(this, ViewPdfActivity.class);
         intent.putExtra("path", pdfFile.getAbsolutePath());
+        intent.putExtra(TUsuario.NUMERO_TEL, datosUsuario.getAsString(TUsuario.NUMERO_TEL));
+        intent.putExtra(TUsuario.CORREO, datosUsuario.getAsString(TUsuario.CORREO));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

@@ -26,8 +26,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class PDF {
+    public static final String  DIRECTORI_NAME = "docs";
     private File pdfFile;
     private Document document;
+    private String fileName;
     private PdfWriter pdfWriter;
     private Paragraph paragraph;
     private Font fTitle = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.NORMAL);
@@ -37,11 +39,12 @@ public class PDF {
 
     public void createFile(){
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String fileName = "VPDF_" + timeStamp + ".pdf";
+        fileName = "VPDF_" + timeStamp + ".pdf";
 
-        File folder = new File(Environment.getExternalStorageDirectory().toString(), "Vouchers");
+        File folder = new File(Environment.getExternalStorageDirectory().toString(), DIRECTORI_NAME);
         if (!folder.exists())   folder.mkdir();
         pdfFile = new File(folder, fileName);
+
     }
     public  void openDocument() throws DocumentException, FileNotFoundException {
         createFile();
@@ -139,5 +142,9 @@ public class PDF {
 
     public File getPdfFile() {
         return pdfFile;
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 }

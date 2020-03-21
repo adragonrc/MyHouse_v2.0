@@ -29,7 +29,7 @@ public interface Interface {
         void onClickEditarDetalles(android.view.View view);
         void onClickConfirMensualidad(android.view.View view);
         void onClickConfirDetalles(android.view.View view);
-        void mostrarPDF (File pdfFile);
+        void mostrarPDF (File pdfFile, ContentValues datosUsuario);
         void onClickPhoto(View view);
         void onClickVerAlquileres(android.view.View view);
         void actualizarMensualidad(String mensualidad);

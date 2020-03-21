@@ -62,6 +62,7 @@ public class Presenter extends BasePresenter<Interfaz.view> implements Interfaz.
         i.setImageBitmap(bm);
     }
 
+
     private void solicitarDatos() {
         try {
             datosUsuario = db.getFilaInUsuariosOf("*", dni);
@@ -91,6 +92,18 @@ public class Presenter extends BasePresenter<Interfaz.view> implements Interfaz.
     public void actualizarApeMat(String apellidoMat) {
         db.upDateUsuario(TUsuario.APELLIDO_MAT, apellidoMat, dni);
         view.actualizarApeMat(apellidoMat);
+    }
+
+    @Override
+    public void actualizarNumTel(String numero) {
+        db.upDateUsuario(TUsuario.NUMERO_TEL, numero, dni);
+        view.actualizarNumTel(numero);
+    }
+
+    @Override
+    public void actualizarCorreo(String correo) {
+        db.upDateUsuario(TUsuario.CORREO, correo, dni);
+        view.actualizarCorreo(correo);
     }
 
 }

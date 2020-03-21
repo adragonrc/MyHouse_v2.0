@@ -1,8 +1,6 @@
 package com.alquilerapp.myapplication.VerCuarto;
 
 import android.content.ContentValues;
-import android.content.Intent;
-import android.view.View;
 
 import com.alquilerapp.myapplication.Base.BasePresenter;
 import com.alquilerapp.myapplication.MyAdminDate;
@@ -10,14 +8,11 @@ import com.alquilerapp.myapplication.PDF;
 import com.alquilerapp.myapplication.UTILIDADES.Mensualidad;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TCuarto;
-import com.alquilerapp.myapplication.ViewPdfActivity;
-import com.alquilerapp.myapplication.Voucher;
 import com.itextpdf.text.DocumentException;
 
 import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Presentador extends BasePresenter<Interface.view> implements Interface.Presenter {
@@ -121,11 +116,13 @@ public class Presentador extends BasePresenter<Interface.view> implements Interf
         PDF pdf = new PDF();
         try {
             pdf.crearVoucher(datosCuarto.getAsString(TCuarto.NUMERO), "000",datosMensualidad.getAsString(Mensualidad.COSTO));
-            view.mostrarPDF(pdf.getPdfFile());
-        } catch (FileNotFoundException e) {
+            view.mostrarPDF(pdf.getPdfFile(), datosUsuario);
+        } catch (FileNotFoundException ex) {
             view.showMensaje("error al crear el archivo");
-        } catch (DocumentException e) {
+            ex.printStackTrace();
+        } catch (DocumentException ex) {
             view.showMensaje("error al crear el documento");
+            ex.printStackTrace();
         }
     }
 

@@ -23,18 +23,27 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
     private TextView tvNombres;
     private TextView tvApellidoPat;
     private TextView tvApellidoMat;
+    private TextView tvNumeroTel;
+    private TextView tvCorreo;
     private TextView tvNumAlquiler;
 
     private EditText etNombres;
     private EditText etApellidoPat;
     private EditText etApellidoMat;
+    private EditText etNumeroTel;
+    private EditText etCorreo;
 
     private LinearLayout llEditarNombres;
     private LinearLayout llEditarApePat;
     private LinearLayout llEditarApeMat;
+    private LinearLayout llEditarNumTel;
+    private LinearLayout llEditarCorreo;
+
     private LinearLayout llConfirNombres;
     private LinearLayout llConfirApePat;
     private LinearLayout llConfirApeMat;
+    private LinearLayout llConfirNumTel;
+    private LinearLayout llConfirCorreo;
 
     private ImageView imPhoto;
 
@@ -73,6 +82,8 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
         tvNombres.setText(datos.getAsString(TUsuario.NOMBRES));
         tvApellidoPat.setText(datos.getAsString(TUsuario.APELLIDO_PAT));
         tvApellidoMat.setText(datos.getAsString(TUsuario.APELLIDO_MAT));
+        tvNumeroTel.setText(datos.getAsString(TUsuario.NUMERO_TEL));
+        tvCorreo.setText(datos.getAsString(TUsuario.CORREO));
         uriPhoto = datos.getAsString(TUsuario.URI);
         presenter.setImage(imPhoto, uriPhoto);
         tvNumAlquiler.setText(i);
@@ -135,6 +146,22 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
     }
 
     @Override
+    public void ocEditarNumTel(View view) {
+        etNumeroTel.setText(tvNumeroTel.getText().toString());
+        llEditarNumTel.setVisibility(View.GONE);
+        llConfirNumTel.setVisibility(View.VISIBLE);
+        etNumeroTel.requestFocus();
+    }
+
+    @Override
+    public void ocEditarCorreo(View view) {
+        etCorreo.setText(tvCorreo.getText().toString());
+        llEditarCorreo.setVisibility(View.GONE);
+        llConfirCorreo.setVisibility(View.VISIBLE);
+        etCorreo.requestFocus();
+    }
+
+    @Override
     public void ocConfirNombres(View view) {
         llEditarNombres.setVisibility(View.VISIBLE);
         llConfirNombres.setVisibility(View.GONE);
@@ -155,6 +182,19 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
         presenter.actualizarApeMat(etApellidoMat.getText().toString());
     }
 
+    @Override
+    public void ocConfirNumTel(View view) {
+        llEditarNumTel.setVisibility(View.VISIBLE);
+        llConfirNumTel.setVisibility(View.GONE);
+        presenter.actualizarNumTel(etNumeroTel.getText().toString());
+    }
+
+    @Override
+    public void ocConfirCorreo(View view) {
+        llEditarCorreo.setVisibility(View.VISIBLE);
+        llConfirCorreo.setVisibility(View.GONE);
+        presenter.actualizarCorreo(etCorreo.getText().toString());
+    }
     public void onClickPhoto(View view){
         Intent intent = new Intent(this, ActivityShowImage.class);
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imPhoto, ViewCompat.getTransitionName(imPhoto));
@@ -184,6 +224,16 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
     public void actualizarApeMat(String apellidMaterno) {
         tvApellidoMat.setText(apellidMaterno);
     }
+
+    @Override
+    public void actualizarNumTel(String numTel) {
+        tvNumeroTel.setText(numTel);
+    }
+    @Override
+    public void actualizarCorreo(String correo) {
+        tvCorreo.setText(correo);
+    }
+
     @Override
     public void salir(){
         onBackPressed();
@@ -196,6 +246,8 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
         tvNombres = findViewById(R.id.hutvNombres);
         tvApellidoPat = findViewById(R.id.hutvApePat);
         tvApellidoMat = findViewById(R.id.hutvApeMat);
+        tvNumeroTel = findViewById(R.id.hutvNumTel);
+        tvCorreo = findViewById(R.id.hutvCorreo);
         tvNumAlquiler = findViewById(R.id.tvNumAlquiler);
 
         imPhoto = findViewById(R.id.imPhoto);
@@ -203,13 +255,20 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
         etNombres = findViewById(R.id.etNombres);
         etApellidoPat = findViewById(R.id.etApePat);
         etApellidoMat = findViewById(R.id.etApeMat);
+        etNumeroTel = findViewById(R.id.etNumTel);
+        etCorreo = findViewById(R.id.etCorreo);
 
         llEditarNombres = findViewById(R.id.llEditarNombres);
         llEditarApePat = findViewById(R.id.llEditarApellidoPat);
         llEditarApeMat = findViewById(R.id.llEditarMat);
+        llEditarNumTel = findViewById(R.id.llEditarNumTel);
+        llEditarCorreo = findViewById(R.id.llEditarCorreo);
+
         llConfirNombres = findViewById(R.id.llConfirmNombres);
         llConfirApePat = findViewById(R.id.llConfirmApePat);
         llConfirApeMat = findViewById(R.id.llConfirmApeMat);
+        llConfirNumTel = findViewById(R.id.llConfirmNumTel);
+        llConfirCorreo = findViewById(R.id.llConfirmCorreo);
 
     }
 }

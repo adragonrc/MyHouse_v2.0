@@ -2,6 +2,7 @@ package com.alquilerapp.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
@@ -11,6 +12,7 @@ public class ViewPdfActivity extends AppCompatActivity {
 
     private PDFView pdfView;
     private File file;
+    private String correo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,12 @@ public class ViewPdfActivity extends AppCompatActivity {
                     .enableAntialiasing(true)
                     .load();
         }
+    }
+    public void onclick(View view){
+        Send.sendForGMail(this, file.getName());
+    }
+    public void onclick2(View view){
+        Send.sendForWhatsapp(this, file.getName());
     }
 }
 
