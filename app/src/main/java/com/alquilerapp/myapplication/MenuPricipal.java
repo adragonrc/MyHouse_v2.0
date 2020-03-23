@@ -12,7 +12,6 @@ import com.alquilerapp.myapplication.agregarCuarto.AgregarCuarto;
 import com.alquilerapp.myapplication.agregarInquilino.AgregarInquilino;
 import com.alquilerapp.myapplication.menuPrincipal.Interface;
 import com.alquilerapp.myapplication.mi_casa.MiCasaActivity;
-import com.alquilerapp.myapplication.verInquilinos.VerInquilinos;
 
 public class MenuPricipal extends AppCompatActivity implements Interface.View {
     DataBaseAdmin bd;
@@ -33,10 +32,6 @@ public class MenuPricipal extends AppCompatActivity implements Interface.View {
     @Override
     public void onClickMiCasa(View view) {
         startActivity(new Intent(this, MiCasaActivity.class));
-    }
-
-    public void onClickVerAlquiler(View view) {
-        startActivity(new Intent(this, VerInquilinos.class));
     }
 
     public void onClickMasCuartos(View view) {

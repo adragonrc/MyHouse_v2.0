@@ -10,24 +10,28 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.cardview.widget.CardView;
 
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alquilerapp.myapplication.ActivityShowImage;
 import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.ListAlquileres.ListAlquileresActivity;
 import com.alquilerapp.myapplication.R;
+import com.alquilerapp.myapplication.UTILIDADES.Mensualidad;
 import com.alquilerapp.myapplication.ViewPdfActivity;
 import com.alquilerapp.myapplication.tableActivity.TableActivity;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TCuarto;
 import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
-import com.alquilerapp.myapplication.verUsuario.VerUsuario;
+import com.alquilerapp.myapplication.verUsuario.DialogConfirmPago;
 import com.alquilerapp.myapplication.agregarInquilino.AgregarInquilino;
 import com.alquilerapp.myapplication.historialUserPakage.HistorialUsuarioActivity;
 import com.alquilerapp.myapplication.mydialog.DialogConfirm;
@@ -38,6 +42,7 @@ import com.alquilerapp.myapplication.mydialog.PresenterDialogImput;
 import java.io.File;
 
 public class VerCuartoActivity extends BaseActivity<Interface.Presenter> implements Interface.view {
+    static final String TAG_REALIZAR_PAGO = "confirmarPago";
 
     private TextView tvNumeroCuarto;
     private TextView tvNombres;
@@ -52,9 +57,10 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
     private ImageView ivAlert;
     private ImageView ivPerfil;
 
+    private Button btPagarAlquiler;
+
     private CardView cvDetallesAlquiler;
     private CardView cvMensaje;
-
 
     private LinearLayout llBtns;
 
@@ -66,9 +72,7 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
 
     private DialogInterfaz.DialogImputPresenter dip;
 
-    private DialogConfirm dialogConfirm;
-
-    private DialogInterfaz.DialogConfirmPresenter dcp;
+    private DialogConfirmPago dialogConfirmPago;
 
     private View.OnClickListener listener;
     private View.OnClickListener listener2;
@@ -126,7 +130,30 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
         listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogConfirm.showDiaglog(getSupportFragmentManager(),null,dcp);
+
+                Bundle datos = new Bundle();
+                datos.putString(TUsuario.DNI, tvDni.getText().toString());
+                datos.putString(TCuarto.NUMERO, tvNumeroCuarto.getText().toString());
+                datos.putString(TAlquiler.FECHA_C, tvFechaC.getText().toString());
+                datos.putString(Mensualidad.COSTO, tvMensualidad.getText().toString());
+
+                dialogConfirmPago = new DialogConfirmPago(datos, VerCuartoActivity.this);
+
+                dialogConfirmPago.setOnClickListenerAceptar(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        presenter.realizarPago();
+                        dialogConfirmPago.dismiss();
+                    }
+                });
+                dialogConfirmPago.setOnClickListenerCancelar(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(VerCuartoActivity.this, "transaccion canselada", Toast.LENGTH_SHORT).show();
+                        dialogConfirmPago.dismiss();
+                    }
+                });
+                dialogConfirmPago.show(getSupportFragmentManager(), TAG_REALIZAR_PAGO);
             }
         };
         listener2 = new View.OnClickListener() {
@@ -137,15 +164,7 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
         };
         iMenu = R.menu.menu_cuarto_no_alquilado;
 
-        dcp = new DialogInterfaz.DialogConfirmPresenter() {
-            @Override
-            public void positiveButtonListener() {
 
-                presenter.realizarPago();
-
-            }
-        };
-        dialogConfirm = new DialogConfirm();
     }
     @Override
     protected int getLayout() {
@@ -199,7 +218,7 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
 
     @Override
     public void onClickVerInquilino(View view){
-        Intent i = new Intent(this, VerUsuario.class);
+        Intent i = new Intent(this, DialogConfirmPago.class);
         i.putExtra(TUsuario.DNI, Integer.parseInt(tvDni.getText().toString()));
         startActivity(i);
     }
@@ -262,7 +281,6 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
         Intent intent = new Intent(this, ActivityShowImage.class);
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, ivPerfil, ViewCompat.getTransitionName(ivPerfil));
 
-
         intent.putExtra(ActivityShowImage.DATA_IMAGE, URIPerfil);
         startActivity(intent, options.toBundle());
     }
@@ -307,6 +325,7 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
     public void noPago() {
         ivAlert.setImageDrawable(getResources().getDrawable(R.drawable.ic_add_alert_black_24dp));
         llPagoMensual.setOnClickListener(listener);
+        btPagarAlquiler.setOnClickListener(listener);
         findViewById(R.id.tvRealizarPago).setVisibility(View.VISIBLE);
     }
 
@@ -315,6 +334,7 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
         findViewById(R.id.tvRealizarPago).setVisibility(View.GONE);
         ivAlert.setImageDrawable(getResources().getDrawable(R.drawable.ic_mood_black_24dp));
         llPagoMensual.setOnClickListener(listener2);
+        btPagarAlquiler.setOnClickListener(listener2);
     }
 
     @Override
@@ -329,6 +349,8 @@ public class VerCuartoActivity extends BaseActivity<Interface.Presenter> impleme
 
         etDetalles = findViewById(R.id.etDetalles);
         etMensualidad = findViewById(R.id.etMensualidad);
+
+        btPagarAlquiler = findViewById(R.id.btPagarAlquiler);
 
         cvDetallesAlquiler = findViewById(R.id.cvDetallesAlquiler);
         cvMensaje = findViewById(R.id.cvMensaje);

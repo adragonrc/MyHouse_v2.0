@@ -6,7 +6,6 @@ import com.alquilerapp.myapplication.Base.IBasePresenter;
 
 public interface Interface {
     interface Presenter extends IBasePresenter {
-        void agregarFrag();
     }
     interface View extends BaseView {
         void agregarFragmento(String idAlquiler);

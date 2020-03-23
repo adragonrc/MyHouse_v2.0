@@ -16,7 +16,7 @@ import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.tableActivity.TableActivity;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
-import com.alquilerapp.myapplication.verUsuario.VerUsuario;
+import com.alquilerapp.myapplication.verUsuario.DialogConfirmPago;
 import com.alquilerapp.myapplication.mydialog.DialogImput;
 import com.alquilerapp.myapplication.mydialog.DialogInterfaz;
 import com.alquilerapp.myapplication.mydialog.DialogOptions;
@@ -105,7 +105,7 @@ public class LinearLayoutUser implements Interfaz.View{
         */
     }
     public void layoutOnClick(){
-        Intent i = new Intent(mContext, VerUsuario.class);
+        Intent i = new Intent(mContext, DialogConfirmPago.class);
         i.putExtra(TUsuario.DNI,Integer.parseInt(tvDni.getText().toString()));
         mContext.startActivity(i);
     }

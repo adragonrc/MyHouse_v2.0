@@ -176,7 +176,6 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
-
         </TableRow>
     </TableLayout>
 

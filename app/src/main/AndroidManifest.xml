@@ -33,7 +33,7 @@
         <activity
             android:name=".VerCuarto.VerCuartoActivity"
             android:configChanges="orientation" />
-        <activity android:name=".verUsuario.VerUsuario" />
+        <activity android:name=".verUsuario.DialogConfirmPago" />
         <activity
             android:name=".agregarCuarto.AgregarCuarto"
             android:windowSoftInputMode="stateAlwaysVisible" />

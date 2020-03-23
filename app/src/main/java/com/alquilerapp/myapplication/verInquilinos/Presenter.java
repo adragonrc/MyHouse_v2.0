@@ -11,17 +11,6 @@ public class Presenter extends BasePresenter<Interface.View> implements Interfac
     }
 
     @Override
-    public void agregarFrag(){
-        idAlquileres = db.getIdOfAllAlquileres();
-        if (idAlquileres != null)
-        for (int i = 0; i<idAlquileres.length; i++){
-            view.agregarFragmento(idAlquileres[i]);
-        }
-        else view.showError();
-    }
-
-    @Override
-    public void iniciarComandos() {
-        agregarFrag();
+    public void iniciarComandos(){
     }
 }

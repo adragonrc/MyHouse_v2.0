@@ -14,9 +14,6 @@ import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.R;
 
 public class VerInquilinos extends BaseActivity<Interface.Presenter> implements Interface.View{
-    private LinearLayout layout;
-    private ScrollView sv;
-    private TextView tvError;
 
     @Override
     protected void iniciarComandos() {
@@ -35,20 +32,12 @@ public class VerInquilinos extends BaseActivity<Interface.Presenter> implements 
 
     @Override
     public void agregarFragmento(String idAlquiler){
-        /*LinearLayoutUser llu = new LinearLayoutUser(getLayoutInflater(),getContext(),getSupportFragmentManager());
-        View View = llu.createView(idAlquiler);
-        layout.addView(View);*/
     }
 
     public void showError() {
-        sv.setVisibility(View.GONE);
-        tvError.setVisibility(View.VISIBLE);
     }
 
     protected void iniciarViews(){
-        layout = findViewById(R.id.llInquilinos);
-        sv = findViewById(R.id.svContenedor);
-        tvError = findViewById(R.id.mensajeError);
     }
 
     private View.OnTouchListener onTouchListener  = new View.OnTouchListener() {
