@@ -28,7 +28,7 @@ public interface DataBaseInterface {
     boolean agregarInquilino(String  DNI,String nombres, String apellidoPat, String apellidoMat, String URI);
     boolean agregarAlquiler(String DNI, String numC, String fecha, String fecha_c);
     boolean agregarMensualidad(double costo, String fecha_i, long idA);
-    boolean agregarPago(String fecha, long idM);
+    boolean agregarPago(String fecha, long idM, long DNI);
     boolean agregarNuevoInquilino(ModelUsuario mu, String numC, double costo, @NonNull String fecha_i, @Nullable String fecha_c);
     String[] consultarNumerosDeCuartoDisponibles();
     boolean existIntoCuarto(String valor);

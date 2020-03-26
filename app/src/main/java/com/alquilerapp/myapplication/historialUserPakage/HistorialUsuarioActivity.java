@@ -1,18 +1,20 @@
 package com.alquilerapp.myapplication.historialUserPakage;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alquilerapp.myapplication.ActivityShowImage;
-import com.alquilerapp.myapplication.AlquilerUsuario.AlquilerUsuarioActivity;
+import com.alquilerapp.myapplication.alquilerusuario.AlquilerUsuarioActivity;
 import com.alquilerapp.myapplication.Base.BaseActivity;
 import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
@@ -51,7 +53,7 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
 
     @Override
     protected void iniciarComandos() {
-
+        setTitle("Inquilino");
     }
 
     @Override
@@ -163,36 +165,26 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
 
     @Override
     public void ocConfirNombres(View view) {
-        llEditarNombres.setVisibility(View.VISIBLE);
-        llConfirNombres.setVisibility(View.GONE);
         presenter.actualizarNombres(etNombres.getText().toString());
     }
 
     @Override
     public void ocConfirApePat(View view) {
-        llEditarApePat.setVisibility(View.VISIBLE);
-        llConfirApePat.setVisibility(View.GONE);
         presenter.actualizarApePat(etApellidoPat.getText().toString());
     }
 
     @Override
     public void ocConfirApeMat(View view) {
-        llEditarApeMat.setVisibility(View.VISIBLE);
-        llConfirApeMat.setVisibility(View.GONE);
         presenter.actualizarApeMat(etApellidoMat.getText().toString());
     }
 
     @Override
     public void ocConfirNumTel(View view) {
-        llEditarNumTel.setVisibility(View.VISIBLE);
-        llConfirNumTel.setVisibility(View.GONE);
         presenter.actualizarNumTel(etNumeroTel.getText().toString());
     }
 
     @Override
     public void ocConfirCorreo(View view) {
-        llEditarCorreo.setVisibility(View.VISIBLE);
-        llConfirCorreo.setVisibility(View.GONE);
         presenter.actualizarCorreo(etCorreo.getText().toString());
     }
     public void onClickPhoto(View view){
@@ -212,25 +204,40 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
 
     @Override
     public void actualizarNombres(String nombres) {
+        ocultarTeclado();
+        llEditarNombres.setVisibility(View.VISIBLE);
+        llConfirNombres.setVisibility(View.GONE);
         tvNombres.setText(nombres);
     }
 
     @Override
     public void actualizarApePat(String apellidPaterno) {
+        ocultarTeclado();
+        llEditarApePat.setVisibility(View.VISIBLE);
+        llConfirApePat.setVisibility(View.GONE);
         tvApellidoPat.setText(apellidPaterno);
     }
 
     @Override
     public void actualizarApeMat(String apellidMaterno) {
+        ocultarTeclado();
+        llEditarApeMat.setVisibility(View.VISIBLE);
+        llConfirApeMat.setVisibility(View.GONE);
         tvApellidoMat.setText(apellidMaterno);
     }
 
     @Override
     public void actualizarNumTel(String numTel) {
+        ocultarTeclado();
+        llEditarNumTel.setVisibility(View.VISIBLE);
+        llConfirNumTel.setVisibility(View.GONE);
         tvNumeroTel.setText(numTel);
     }
     @Override
     public void actualizarCorreo(String correo) {
+        ocultarTeclado();
+        llEditarCorreo.setVisibility(View.VISIBLE);
+        llConfirCorreo.setVisibility(View.GONE);
         tvCorreo.setText(correo);
     }
 
@@ -269,6 +276,6 @@ public class HistorialUsuarioActivity extends BaseActivity<Interfaz.presenter> i
         llConfirApeMat = findViewById(R.id.llConfirmApeMat);
         llConfirNumTel = findViewById(R.id.llConfirmNumTel);
         llConfirCorreo = findViewById(R.id.llConfirmCorreo);
-
     }
+
 }

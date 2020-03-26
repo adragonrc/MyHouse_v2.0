@@ -23,11 +23,12 @@ public class Send {
         this.context = context;
     }
 
-    public static void sendForWhatsapp(Context context, String name){
+    public static void sendForWhatsapp(Context context, String name, String toNumber){
         File pdfPath = new File(Environment.getExternalStorageDirectory(), PDF.DIRECTORI_NAME);
         File newFile = new File(pdfPath, name);
         Uri uri = FileProvider.getUriForFile(context, "com.alquilerapp.myapplication.android.fileprovider", newFile);
-        String toNumber = "+51 947 782 227";
+        //String toNumber = "+51 947 782 227";
+
         toNumber = toNumber.replace("+", "").replace(" ", "");
         toNumber = PhoneNumberUtils.stripSeparators(toNumber);
         Intent sendIntent = new Intent("android.intent.action.MAIN");
@@ -38,16 +39,15 @@ public class Send {
         sendIntent.setType("application/pdf");
         context.startActivity(sendIntent);
     }
-    public static void sendForGMail(Context context, String name){
-        String []mailTo = {""};
-        String f1 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+ PDF.DIRECTORI_NAME + "/";
+    public static void sendForGMail(Context context, String name, String correo){
+        String []mailTo = {correo};
         File pdfPath = new File(Environment.getExternalStorageDirectory(), PDF.DIRECTORI_NAME);
         File newFile = new File(pdfPath, name);
         Uri uri = FileProvider.getUriForFile(context, "com.alquilerapp.myapplication.android.fileprovider", newFile);
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.putExtra(Intent.EXTRA_EMAIL, mailTo);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Voucher de alquiler");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Reciba el voucher de su pago");
         emailIntent.setType("application/pdf");
         emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
         context.startActivity(Intent.createChooser(emailIntent, "Send email using: "));

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:id="@+id/CLPefilUsuario"
     tools:context=".historialUserPakage.HistorialUsuarioActivity">
-
     <ScrollView
         android:id="@+id/svHistoriaUsuario"
         android:layout_width="match_parent"
@@ -302,11 +301,12 @@
 
                             <EditText
                                 android:id="@+id/etNumTel"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:maxLength="15"
                                 android:gravity="center_vertical"
-                                android:inputType="textCapSentences"
+                                android:inputType="numberSigned"
                                 android:text="123456789" />
 
                             <ImageButton

@@ -61,7 +61,10 @@
     </string-array>
 
     <string name="sNombreUser">Nombres: </string>
-
+    <string name="id">identificador</string>
+    <string name="password">password</string>
+    <string name="direccion">direccion</string>
+    <string name="correo">correo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tabla">TablaActivity</string>
@@ -84,4 +87,5 @@
     <string name="transition_name">transition_photo</string>
     <string name="NumeroTelf">Numero Telefonico</string>
     <string name="sCorreoEl">Correo Electronico</string>
+    <string name="start">inicio</string>
 </resources>

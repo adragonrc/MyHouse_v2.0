@@ -3,6 +3,7 @@ package com.alquilerapp.myapplication;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -47,7 +48,8 @@ public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface
             db.execSQL(TAlquiler.CREATE_TABLE);
             db.execSQL(Mensualidad.CREATE_TABLE);
             Toast.makeText(context, "Base de datos creada..", Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
+        } catch (SQLException e) {
+            e.printStackTrace();
             Toast.makeText(context, "Error al crear la Base de datos", Toast.LENGTH_SHORT).show();
         }
     }
@@ -307,9 +309,10 @@ public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface
         cv.put(Mensualidad.ID_A, idA);
         return agregar(Mensualidad.T_NOMBRE);
     }
-    public boolean agregarPago(String fecha, long idM){
+    public boolean agregarPago(String fecha, long idM, long DNI){
         cv.put(TPago.FECHA, fecha);
         cv.put(TPago.ID_M, idM);
+        cv.put(TPago.DNI, DNI);
         return agregar(TPago.T_NOMBRE);
     }
 
@@ -324,7 +327,7 @@ public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface
             if (agregarMensualidad(costo, fecha_i, idMax)) {
                 if (f) {
                     idMax = getIDMaxMensualidad();
-                    agregarPago(fecha_c, idMax);
+                    agregarPago(fecha_c, idMax, Long.parseLong(DNI));
                     return  true;
                 }else{
                     return true;
@@ -504,4 +507,27 @@ public class DataBaseAdmin extends SQLiteOpenHelper implements DataBaseInterface
         agregarPago("24/07/2020",15);*/
     }
 
+    public Cursor getUltimoPago(String idMensualidad) {
+        String consulta = "select * from " + TPago.T_NOMBRE + " where " + TPago.ID_M  + "=" +  idMensualidad;
+        SQLiteDatabase bd = getWritableDatabase();
+        Cursor c = bd.rawQuery(consulta, null);
+        if(c.moveToFirst()){
+            return c;
+        }
+        return null;
+    }
+
+    public void agregarVoucher(String fileName, String id) {
+        String up = "update " + TPago.T_NOMBRE + " set " + TPago.URI_VOUCHER + " = '" + fileName + "' where " + TPago.ID + " = '" + id+"';";
+        upDate(up);
+    }
+
+    public Cursor getPago(String id) {
+        String consulta = "select * from "+ TPago.T_NOMBRE + " where "+ TPago.ID + " = " + id;
+        Cursor c = getWritableDatabase().rawQuery(consulta, null);
+        if (c.moveToFirst()){
+            return c;
+        }
+        return null;
+    }
 }

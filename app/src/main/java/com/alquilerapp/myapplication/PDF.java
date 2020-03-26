@@ -54,13 +54,13 @@ public class PDF {
 
     }
 
-    public void crearVoucher(String numCuarto, String numVoucher, String costo) throws FileNotFoundException, DocumentException {
+    public void crearVoucher(String numCuarto, String numVoucher, String costo, String direccion, String fecha) throws FileNotFoundException, DocumentException {
         openDocument();
         addMetaData("Alquiler", "voucher", "AlexRodriguez");
 
         addParagraph("RECIBO DE ALQUILER");
-        addParagraph("(direccion de casa) - N° HABITACION " + numCuarto);
-        addParagraph(MyAdminDate.getFechaActual());
+        addParagraph( direccion + " - HABITACION N°" + numCuarto);
+        addParagraph(fecha);
         addParagraph("PAGO REALIZADO N°:  #    "+ numVoucher);
         addParagraph("--------------------------------------------------------");
         addParagraph("VALOR DE PAGO:     S/  "+ costo);

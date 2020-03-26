@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.alquilerapp.myapplication.AlquilerUsuario.Item;
+import com.alquilerapp.myapplication.alquilerusuario.Item;
 import com.alquilerapp.myapplication.R;
 
 import java.util.ArrayList;

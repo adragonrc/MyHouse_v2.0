@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
             android:text="Listo"
+            android:onClick="ocListo"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

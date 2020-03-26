@@ -16,7 +16,7 @@ import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.tableActivity.TableActivity;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
-import com.alquilerapp.myapplication.verUsuario.DialogConfirmPago;
+import com.alquilerapp.myapplication.verusuario.DialogConfirmPago;
 import com.alquilerapp.myapplication.mydialog.DialogImput;
 import com.alquilerapp.myapplication.mydialog.DialogInterfaz;
 import com.alquilerapp.myapplication.mydialog.DialogOptions;

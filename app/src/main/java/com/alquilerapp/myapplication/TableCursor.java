@@ -30,10 +30,26 @@ public class TableCursor {
     public String[][] getS() {
         return s;
     }
+
     public int getCount(){
         return s.length;
     }
+
     public int getColumCount(){
         return cv.size();
+    }
+
+    public static ContentValues cursorToContentValues(Cursor c){
+        ContentValues cv = new ContentValues();
+        String [][]s = new String[c.getCount()][c.getColumnCount()];
+        if (c.moveToFirst()) {
+            for (int i = 0; i < c.getColumnCount(); i++)
+                cv.put(c.getColumnName(i), i);
+            do {
+                for (int i = 0; i < c.getColumnCount(); i++)
+                    s[c.getPosition()][i] = c.getString(i);
+            } while (c.moveToNext());
+        }
+        return cv;
     }
 }

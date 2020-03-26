@@ -16,36 +16,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AgregarAlquilerActivity"></activity>
+        <activity android:name=".AgregarAlquilerActivity"/>
         <activity android:name=".ViewPdfActivity" />
         <activity android:name=".ActivityShowImage" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".VistaPreviaActivity" />
-        <activity android:name=".AlquilerUsuario.AlquilerUsuarioActivity" />
-        <activity android:name=".ListAlquileres.ListAlquileresActivity" />
-        <activity android:name=".HistorialCasa.HistorialCasaActivity" />
+        <activity android:name=".alquilerusuario.AlquilerUsuarioActivity" />
+        <activity android:name=".listalquileres.ListAlquileresActivity" />
+        <activity android:name=".historialcasa.HistorialCasaActivity" />
         <activity android:name=".mi_casa.MiCasaActivity" />
         <activity android:name=".historialUserPakage.HistorialUsuarioActivity" />
         <activity android:name=".tableActivity.TableActivity" />
-        <activity android:name=".CambiarContrasenia" />
-        <activity
-            android:name=".VerCuarto.VerCuartoActivity"
-            android:configChanges="orientation" />
-        <activity android:name=".verUsuario.DialogConfirmPago" />
-        <activity
-            android:name=".agregarCuarto.AgregarCuarto"
-            android:windowSoftInputMode="stateAlwaysVisible" />
-        <activity android:name=".verInquilinos.VerInquilinos" />
-        <activity android:name=".MenuPricipal" />
-        <activity android:name=".MainActyviti.MainActivity">
+        <activity android:name=".registrarcasa.RegistrarCasaActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".vercuarto.VerCuartoActivity"
+            android:configChanges="orientation" />
+        <activity android:name=".verusuario.DialogConfirmPago" />
+        <activity
+            android:name=".agregarcuarto.AgregarCuarto"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity android:name=".verInquilinos.VerInquilinos" />
+        <activity android:name=".menuPrincipal.MenuPricipal"/>
+
+
+        <activity android:name=".mainactivity.MainActivity">
         </activity>
         <activity
             android:name=".agregarInquilino.AgregarInquilino"

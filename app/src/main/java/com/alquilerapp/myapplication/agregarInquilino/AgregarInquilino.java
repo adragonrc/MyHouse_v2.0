@@ -16,7 +16,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.alquilerapp.myapplication.Base.BaseActivity;
-import com.alquilerapp.myapplication.Modelos.ModelCuarto;
 import com.alquilerapp.myapplication.Modelos.ModelUsuario;
 import com.alquilerapp.myapplication.MyAdminDate;
 import com.alquilerapp.myapplication.Save;
@@ -24,10 +23,9 @@ import com.alquilerapp.myapplication.historialUserPakage.HistorialUsuarioActivit
 import com.alquilerapp.myapplication.R;
 import com.alquilerapp.myapplication.UTILIDADES.TCuarto;
 import com.alquilerapp.myapplication.UTILIDADES.TUsuario;
-import com.alquilerapp.myapplication.agregarCuarto.AgregarCuarto;
+import com.alquilerapp.myapplication.agregarcuarto.AgregarCuarto;
 import com.theartofdev.edmodo.cropper.CropImage;
 
-import java.text.ParseException;
 import java.util.Date;
 
 public class AgregarInquilino extends BaseActivity<Interfaz.Presenter> implements Interfaz.View {
@@ -68,6 +66,7 @@ public class AgregarInquilino extends BaseActivity<Interfaz.Presenter> implement
 
     @Override
     protected void iniciarComandos() {
+        setTitle("Agregar Inquilino");
         etDNI.requestFocus();
     }
 
@@ -187,11 +186,7 @@ public class AgregarInquilino extends BaseActivity<Interfaz.Presenter> implement
     @Override
     protected void onResume() {
         super.onResume();
-        try {
-            presenter.iniciarComandos();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        presenter.iniciarComandos();
     }
 
     protected void iniciarViews(){

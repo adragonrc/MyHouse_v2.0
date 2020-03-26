@@ -13,6 +13,7 @@ public abstract class BasePresenter<V extends BaseView> implements IBasePresente
     public BasePresenter(V view){
         this.view = view;
         db = new DataBaseAdmin(view.getContext(),null,1);
+        db.getWritableDatabase();
         sp = PreferenceManager.getDefaultSharedPreferences(view.getContext());
     }
 

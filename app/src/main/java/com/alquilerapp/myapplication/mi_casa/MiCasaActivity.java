@@ -17,7 +17,7 @@ import com.alquilerapp.myapplication.tableActivity.TableActivity;
 import com.alquilerapp.myapplication.UTILIDADES.TAlquiler;
 import com.alquilerapp.myapplication.UTILIDADES.TCuarto;
 import com.alquilerapp.myapplication.Adapters.RvAdapterCuartos;
-import com.alquilerapp.myapplication.VerCuarto.VerCuartoActivity;
+import com.alquilerapp.myapplication.vercuarto.VerCuartoActivity;
 import com.alquilerapp.myapplication.mi_casa.Models.ModelCuartoView;
 import com.alquilerapp.myapplication.mydialog.DialogImput;
 import com.alquilerapp.myapplication.mydialog.DialogInterfaz;
@@ -37,6 +37,7 @@ public class MiCasaActivity extends BaseActivity<Interface.Presenter> implements
     private byte opcion;
     @Override
     protected void iniciarComandos() {
+        setTitle("Mi Casa");
         opcion = 0;
         dop = new DialogOptions();
         imput = new DialogImput();

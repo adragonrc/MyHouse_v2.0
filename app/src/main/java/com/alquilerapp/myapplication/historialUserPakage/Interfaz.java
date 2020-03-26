@@ -4,11 +4,8 @@ import android.content.ContentValues;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.alquilerapp.myapplication.AlquilerUsuario.Item;
 import com.alquilerapp.myapplication.Base.BaseView;
 import com.alquilerapp.myapplication.Base.IBasePresenter;
-
-import java.util.ArrayList;
 
 public interface Interfaz {
     interface presenter extends IBasePresenter {

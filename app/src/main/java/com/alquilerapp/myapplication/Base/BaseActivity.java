@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.transition.ChangeBounds;
 import android.transition.Fade;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.alquilerapp.myapplication.R;
@@ -24,11 +25,8 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
         presenter = createPresenter();
         iniciarViews();
         iniciarComandos();
-        try {
-            presenter.iniciarComandos();
-        }catch (java.text.ParseException e){
-            Toast.makeText(this,e.getErrorOffset(),Toast.LENGTH_LONG).show();
-        }
+        presenter.iniciarComandos();
+
     }
 
     @Override
@@ -62,5 +60,14 @@ public abstract class BaseActivity<P extends IBasePresenter> extends AppCompatAc
         fade.excludeTarget(android.R.id.navigationBarBackground, true);
         getWindow().setEnterTransition(fade);
         getWindow().setExitTransition(fade);
+    }
+
+    protected void ocultarTeclado(){
+        View view = getCurrentFocus();
+        if (view != null){
+            view.clearFocus();
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }
